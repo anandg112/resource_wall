@@ -46,9 +46,15 @@ app.use("/api/users", usersRoutes(knex));
 // app.get("/", (req, res) => {
 //   res.render("show_tile");
 // });
+
 var index = 0;
-var urlDatabase = {};
-var user = {};
+var urlDatabase = {
+   0: 'qyyJKd-zXRE',
+   1: 'Lgn1hV3weE8',
+   2: 'PSVN4YZGaeU'
+};
+// var users = {};
+
 
 app.get("/get_tile", (req, res) => {
   res.render("get_tile");
@@ -56,20 +62,28 @@ app.get("/get_tile", (req, res) => {
 
 app.post("/show_tile", (req, res) => {
   var url = req.body.insert;
-  urlDatabase[index] = url;
+  urlDatabase[index] = url.substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0];
   res.redirect("/show_tile/" + index);
   index += 1;
 });
 
 app.get("/show_tile/:index", (req, res) => {
-  var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
+  var urlObject = {url: urlDatabase[req.params.index]};
+  console.log(urlObject);
+  console.log(urlDatabase);
   res.render("show_tile", urlObject);
 });
 
-app.get('/show_tile/:user', (req, res) => {
-  var templateVars = {user: user};
-  res.render("show_tile", user);
+app.get("/show_tiles", (req, res) => {
+  console.log(urlDatabase);
+  var urls = {urls: urlDatabase};
+  res.render("show_tiles", urls);
 });
+
+//app.get('/show_tile/:user', (req, res) => {
+//   var templateVars = {user: user};
+//   res.render("show_tile", user);
+// });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
