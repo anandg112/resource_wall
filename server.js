@@ -48,7 +48,7 @@ app.use("/api/users", usersRoutes(knex));
 // });
 var index = 0;
 var urlDatabase = {};
-
+var user = {};
 
 app.get("/get_tile", (req, res) => {
   res.render("get_tile");
@@ -59,13 +59,16 @@ app.post("/show_tile", (req, res) => {
   urlDatabase[index] = url;
   res.redirect("/show_tile/" + index);
   index += 1;
-
 });
 
 app.get("/show_tile/:index", (req, res) => {
-  //url.substring(url.lastIndexOf("?") + 1).split("&")[0];
-  var urlObject = {url: urlDatabase[req.params.index]};
+  var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
   res.render("show_tile", urlObject);
+});
+
+app.get('/show_tile/:user', (req, res) => {
+  var templateVars = {user: user};
+  res.render("show_tile", user);
 });
 
 app.listen(PORT, () => {
