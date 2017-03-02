@@ -38,9 +38,37 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
+// // Home page
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+
+// app.get("/", (req, res) => {
+//   res.render("show_tile");
+// });
+var index = 0;
+var urlDatabase = {};
+var user = {};
+
+app.get("/get_tile", (req, res) => {
+  res.render("get_tile");
+});
+
+app.post("/show_tile", (req, res) => {
+  var url = req.body.insert;
+  urlDatabase[index] = url;
+  res.redirect("/show_tile/" + index);
+  index += 1;
+});
+
+app.get("/show_tile/:index", (req, res) => {
+  var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
+  res.render("show_tile", urlObject);
+});
+
+app.get('/show_tile/:user', (req, res) => {
+  var templateVars = {user: user};
+  res.render("show_tile", user);
 });
 
 
