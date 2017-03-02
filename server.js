@@ -38,9 +38,34 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
+// // Home page
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+
+// app.get("/", (req, res) => {
+//   res.render("show_tile");
+// });
+var index = 0;
+var urlDatabase = {};
+
+
+app.get("/get_tile", (req, res) => {
+  res.render("get_tile");
+});
+
+app.post("/show_tile", (req, res) => {
+  var url = req.body.insert;
+  urlDatabase[index] = url;
+  res.redirect("/show_tile/" + index);
+  index += 1;
+
+});
+
+app.get("/show_tile/:index", (req, res) => {
+  //url.substring(url.lastIndexOf("?") + 1).split("&")[0];
+  var urlObject = {url: urlDatabase[req.params.index]};
+  res.render("show_tile", urlObject);
 });
 
 app.listen(PORT, () => {
