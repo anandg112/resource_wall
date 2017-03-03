@@ -38,14 +38,14 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// // Home page
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+// Home page
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-// app.get("/", (req, res) => {
-//   res.render("show_tile");
-// });
+app.get("/", (req, res) => {
+  res.render("show_tile");
+});
 
 var index = 0;
 var urlDatabase = {
