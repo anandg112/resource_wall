@@ -13,8 +13,12 @@
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 </head>
 
-<body>
 
+  <body>
+  <nav id="nav-bar">
+  <h1>Maestro</h1>
+    <input type="button" class="logout" value="LogOUT"/>
+  </nav>
   <div id="mainform">
     <h1>Sharing is Caring</h1>
 
@@ -38,6 +42,7 @@
         <br/>
         <input type="submit" id="loginbtn" value="Login"/>
         <input type="button" id="cancel" value="Cancel"/>
+      </form>
       <form class="form" action="/register" id="login" method="POST">
         <h3>Not part of our awesome team yet?Don't panic!Just register with us!</h3>
         <hr/><br/>
@@ -60,7 +65,6 @@
         <input type="button" id="cancel" value="Cancel"/>
         <br/>
         <br/>
-      </form>
       </form>
     </div>
   </div>

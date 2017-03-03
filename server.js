@@ -41,9 +41,8 @@ app.use("/api/users", usersRoutes(knex));
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['key1', 'key2'],
-
-}))
+  keys: ['key1', 'key2']
+}));
 
 // Home page
 app.get("/", (req, res) => {
@@ -53,9 +52,19 @@ app.get("/", (req, res) => {
 app.get("/", (req, res) => {
   res.render("show_tile");
 });
+
+// app.get("/", (req, res) => {
+//   res.render("show_tile");
+// });
+
 var index = 0;
-var urlDatabase = {};
-var user = {};
+var urlDatabase = {
+   0: 'qyyJKd-zXRE',
+   1: 'Lgn1hV3weE8',
+   2: 'PSVN4YZGaeU'
+};
+// var users = {};
+
 
 app.get("/get_tile", (req, res) => {
   res.render("get_tile");
@@ -63,7 +72,7 @@ app.get("/get_tile", (req, res) => {
 
 app.post("/show_tile", (req, res) => {
   var url = req.body.insert;
-  urlDatabase[index] = url;
+  urlDatabase[index] = url.substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0];
   res.redirect("/show_tile/" + index);
   index += 1;
 });
@@ -85,17 +94,20 @@ app.get("/register", (req, res) =>{
 
 app.post('/register', function(req, res) {
   const {first_name, last_name, email, password} = req.body;
-
+  console.log(req.body)
   knex.insert({
       first_name: first_name,
       last_name: last_name,
       email: email,
-      password:  password
+      password: password
   })
   .into('users')
   .then(function(result){
+    // if(email === email){
+    //
+    // }
     req.session = { email };
-    res.redirect("/")
+    res.redirect("/");
   })
   .catch(function(error){
   console.log(error);
@@ -111,6 +123,7 @@ app.post('/login', function(req, res) {
    knex.select(email, password)
    .from('users')
    .then(function(result){
+
      req.session = { email };
      res.redirect("/get_tile")
    })
@@ -123,6 +136,24 @@ app.post("/logout", (req, res) =>{
   req.session = null;
   res.redirect("/")
 })
+
+app.get('/show_tile/:index', (req, res) =>{
+  var urlObject = {url: urlDatabase[req.params.index]};
+  console.log(urlObject);
+  console.log(urlDatabase);
+  res.render("show_tile", urlObject);
+});
+
+app.get("/show_tiles", (req, res) => {
+  console.log(urlDatabase);
+  var urls = {urls: urlDatabase};
+  res.render("show_tiles", urls);
+});
+
+//app.get('/show_tile/:user', (req, res) => {
+//   var templateVars = {user: user};
+//   res.render("show_tile", user);
+// });
 
 
 app.listen(PORT, () => {
