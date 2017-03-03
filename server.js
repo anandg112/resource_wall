@@ -150,7 +150,7 @@ app.get("/users/:id", (req, res) => {
 //Macky: Line 150 to line 200 is mine. Don't touch.
 app.get("/test", (req, res) => {
 res.render("test.ejs")
-}
+})
 
 
 
