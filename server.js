@@ -38,47 +38,95 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// // Home page
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+// Home page
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 // app.get("/", (req, res) => {
 //   res.render("show_tile");
 // });
 
 var index = 0;
-var urlDatabase = {
-   0: 'qyyJKd-zXRE',
-   1: 'Lgn1hV3weE8',
-   2: 'PSVN4YZGaeU'
-};
+// var urlDatabase = {
+//    0: 'qyyJKd-zXRE',
+//    1: 'Lgn1hV3weE8',
+//    2: 'PSVN4YZGaeU'
+// };
 // var users = {};
 
-
-app.get("/get_tile", (req, res) => {
-  res.render("get_tile");
+app.get("/users", (req, res) => {
+  knex
+    .select('*')
+    .from('users')
+    //.where('youtubeid', 'Yqq91WC3XWk')
+    .then((results) => {
+      res.json(results);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
-app.post("/show_tile", (req, res) => {
-  var url = req.body.insert;
-  urlDatabase[index] = url.substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0];
-  res.redirect("/show_tile/" + index);
-  index += 1;
+app.get("/movies", (req, res) => {
+  knex
+    .select('*')
+    .from('movies')
+    //.where('youtubeid', 'Yqq91WC3XWk')
+    .then((results) => {
+      res.json(results);
+    })
+    .catch((error) => {
+    console.log(error);
+    });
 });
 
-app.get("/show_tile/:index", (req, res) => {
-  var urlObject = {url: urlDatabase[req.params.index]};
-  console.log(urlObject);
-  console.log(urlDatabase);
-  res.render("show_tile", urlObject);
+app.get("/movies/:id", (req, res) => {
+  knex
+    .select('youtubeid')
+    .from('movies')
+    .where('youtubeid', 'Yqq91WC3XWk')
+    .then((results) => {
+      res.render('tile.ejs');
+    })
+    .catch((error) => {
+    console.log(error);
+    });
 });
 
-app.get("/show_tiles", (req, res) => {
-  console.log(urlDatabase);
-  var urls = {urls: urlDatabase};
-  res.render("show_tiles", urls);
+app.get("/users/:id", (req, res) => {
+  knex
+    .select('*')
+    .from('users')
+    .where('youtubeid', 'Yqq91WC3XWk')
+    .then((results) => {
+      res.json(results);
+    })
+    .catch((error) => {
+    console.log(error);
+    });
 });
+// app.get("/get_tile", (req, res) => {
+//   res.render("get_tile");
+// });
+//
+// app.post("/show_tile", (req, res) => {
+//   var url = req.body.url;
+//   urlDatabase[index] = url.substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0];
+//   res.redirect("/show_tile/" + index);
+//   index += 1;
+// });
+//
+// app.get("/show_tile/:index", (req, res) => {
+//   var urlObject = {url: urlDatabase[req.params.index]};
+//   res.render("show_tile", urlObject);
+// });
+//
+// app.get("/show_tiles", (req, res) => {
+//   console.log(urlDatabase);
+//   var urls = {urls: urlDatabase};
+//   res.render("show_tiles", urls);
+// });
 
 //app.get('/show_tile/:user', (req, res) => {
 //   var templateVars = {user: user};
