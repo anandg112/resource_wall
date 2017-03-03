@@ -10,28 +10,24 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
   </head>
 
 <body>
+
+  <% for (movie of movies){ %>
   <main class="container">
 
   <div id = "titleName">
-    <%= title %>
-  </div>
-
-  <div id = "arrows">
-    <i class="material-icons">keyboard_arrow_left</i>
-    <i class="material-icons">keyboard_arrow_right</i>
+    <%=  movie.title%>
   </div>
 
   <div id = "preview">
-    <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= id %>" frameborder="0" allowfullscreen></iframe>
+    <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= movie.youtubeid%>" frameborder="0" allowfullscreen></iframe>
   </div>
 
-
-
   <div id = "descrip">
-    <%= description %>
+    <%= movie.description %>
   </div>
 
   <div>
@@ -39,6 +35,7 @@
   </div>
 
   </main>
+  <% } %>
 
 </body>
 </html>
