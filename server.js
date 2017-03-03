@@ -43,9 +43,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/", (req, res) => {
-//   res.render("show_tile");
-// });
+app.get("/", (req, res) => {
+  res.render("show_tile");
+});
 
 var index = 0;
 // var urlDatabase = {
@@ -136,6 +136,71 @@ app.get("/users/:id", (req, res) => {
 //   var templateVars = {user: user};
 //   res.render("show_tile", user);
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Macky: Line 150 to line 200 is mine. Don't touch.
+app.get("/test", (req, res) => {
+res.render(/test.ejs)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
