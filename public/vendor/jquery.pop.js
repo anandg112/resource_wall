@@ -12,6 +12,17 @@ $("#contact #cancel").click(function() {
   $(this).parent().parent().hide();
 });
 
+$.ajax({
+  method: "POST",
+  url:"/register"
+}).done((data) =>{
+  (if email === email){
+    alert("This email is already exists!")
+  } else {
+    $("#register").css("display", "none")
+  }
+})
+
 // $("#registerBtn").click(function() {
 //   var name = $("#first_name").val();
 //   var lastname = $("#last_name").val();
