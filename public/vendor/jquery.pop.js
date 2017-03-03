@@ -24,6 +24,13 @@ $("#registerBtn").click(function() {
     }
   });
 
+$.ajax({
+  method:"POST",
+  url:"/register"
+}).done(data) =>{
+  if
+
+})
   // function validateEmail(email) {
   //   var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
   //   if (filter.test(email)) {
