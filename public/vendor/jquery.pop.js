@@ -28,7 +28,11 @@ $.ajax({
   method:"POST",
   url:"/register"
 }).done(data) =>{
-  if
+  if (email === email){
+    alert("Please fill up the whole form");
+  } else {
+    $("#contactdiv").css("display", "none")
+  }
 
 })
   // function validateEmail(email) {

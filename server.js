@@ -107,10 +107,10 @@ app.post('/register', function(req, res) {
     //
     // }
     req.session = { email };
-    res.redirect("/");
+    res.send("OK");
   })
   .catch(function(error){
-  console.log(error);
+  res.send("Failed");
   });
 });
 
