@@ -1,40 +1,57 @@
 $(document).ready(function() {
   function popup() {
-$("#logindiv").css("display", "block");
+    $("#logindiv").css("display", "block");
   }
-$("#login #cancel").click(function() {
-  $(this).parent().parent().hide();
-});
-$("#onclick").click(function() {
-  $("#contactdiv").css("display", "block");
-});
-$("#contact #cancel").click(function() {
-  $(this).parent().parent().hide();
-});
+  $("#login #cancel").click(function() {
+    $(this).parent().parent().hide();
+  });
+  $("#onclick").click(function() {
+    $("#contactdiv").css("display", "block");
+  });
+  $("#contact #cancel").click(function() {
+    $(this).parent().parent().hide();
+  });
 
-$.ajax({
-  method: "POST",
-  url:"/register"
-}).done((data) =>{
-  (if email === email){
-    alert("This email is already exists!")
-  } else {
-    $("#register").css("display", "none")
-  }
-})
+  $("#registerBtn").click(function(e) {
+    e.preventDefault();
+    var name = $("#first_name").val();
+    var lastname = $("#last_name").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+    if (!name || !lastname || !email|| !password){
+      return alert("Please fill up the whole form");
+    }else{
+      $("#register").css("display", "none");
+    }
 
-// $("#registerBtn").click(function() {
-//   var name = $("#first_name").val();
-//   var lastname = $("#last_name").val();
-//   var email = $("#email").val();
-//   var password = $("#password").val();
-//   if (!name || !lastname || !email|| !password){
-//   alert("Please fill up the whole form");
-//     }else{
-//   $("#register").css("display", "none");
-//   $("")
-//     }
-//   });
+    $.ajax({
+      method: "POST",
+      url:"/register"
+    }).done((data) => {
+      console.log(data)
+      if (data === "OK") {
+        $('form').hide();
+        $("#contactdiv").css("background: white;")
+      } else {
+        alert("Oops something went wrong");
+      }
+    })
+
+  });
+
+
+  $("#loginbtn").click(function() {
+  var email = $("#email").val();
+  var password = $("#password").val();
+    if (!email|| !password){
+    alert("Username or Password was Wrong");
+      }else{
+    $("#logindiv").css("display", "none");
+      }
+    });
+  });
+
+
 
 
 
@@ -53,13 +70,3 @@ $.ajax({
   //   $("#contactdiv").css("display", "none");
   // }
   //});
-$("#loginbtn").click(function() {
-var email = $("#email").val();
-var password = $("#password").val();
-  if (!email|| !password){
-  alert("Username or Password was Wrong");
-    }else{
-  $("#logindiv").css("display", "none");
-    }
-  });
-});

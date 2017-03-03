@@ -121,14 +121,11 @@ app.post('/register', function(req, res) {
   })
   .into('users')
   .then(function(result){
-    // if(email === email){
-    //
-    // }
     req.session = { email };
     res.send("OK");
   })
   .catch(function(error){
-  res.send("Failed");
+    res.send("Failed");
   });
 });
 
@@ -143,7 +140,7 @@ app.post('/login', function(req, res) {
    .then(function(result){
 
      req.session = { email };
-     res.redirect("/get_tile")
+     res.redirect("/")
    })
    .catch(function(error){
    console.log(error);
