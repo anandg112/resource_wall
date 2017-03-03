@@ -2,12 +2,13 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT          = process.env.PORT || 8080;
+const ENV           = process.env.ENV || "development";
+const express       = require("express");
+const bodyParser    = require("body-parser");
+const sass          = require("node-sass-middleware");
+const app           = express();
+const cookieSession = require("cookie-session");
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -38,14 +39,20 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// // Home page
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
 
-// app.get("/", (req, res) => {
-//   res.render("show_tile");
-// });
+}))
+
+// Home page
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.get("/", (req, res) => {
+  res.render("show_tile");
+});
 var index = 0;
 var urlDatabase = {};
 var user = {};
@@ -63,14 +70,59 @@ app.post("/show_tile", (req, res) => {
 
 app.get("/show_tile/:index", (req, res) => {
   var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
-  res.render("show_tile", urlObject);
+    res.render("show_tile", urlObject);
 });
 
 app.get('/show_tile/:user', (req, res) => {
   var templateVars = {user: user};
-  res.render("show_tile", user);
+    res.render("show_tile", user);
 });
 
+app.get("/register", (req, res) =>{
+  res.render("index");
+});
+
+
+app.post('/register', function(req, res) {
+  const {first_name, last_name, email, password} = req.body;
+
+  knex.insert({
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password:  password
+  })
+  .into('users')
+  .then(function(result){
+    req.session = { email };
+    res.redirect("/")
+  })
+  .catch(function(error){
+  console.log(error);
+  });
+});
+
+app.get("/login", (req, res) =>{
+  res.render("index");
+});
+
+app.post('/login', function(req, res) {
+  const {email, password} = req.body;
+   knex.select(email, password)
+   .from('users')
+   .then(function(result){
+     req.session = { email };
+     res.redirect("/get_tile")
+   })
+   .catch(function(error){
+   console.log(error);
+   });
+})
+
+app.post("/logout", (req, res) =>{
+  req.session = null;
+  res.redirect("/")
+})
 
 
 app.listen(PORT, () => {

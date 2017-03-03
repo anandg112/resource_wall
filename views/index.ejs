@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
   <head>
     <title>Research bar</title>
 
@@ -10,54 +10,59 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/vendor/jquery.pop.js"></script>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-  </head>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+</head>
 
-  <body>
-    <div id="mainform">
-        <h1>Sharing is Caring</h1>
-<div class="form" id="popup">
-<b>Wecome(back?) to paradise</b><hr/>
-<p id="onclick">Sign In/Sign Up</p>
-<br/>
-</div>
+<body>
 
-<div id="contactdiv">
-<form class="form" action="#" id="contact">
-<h3>Login Form</h3>
-<hr/><br/>
-<label>email </label>
-<br/>
-<input type="text" id="username" placeholder="LucyTheGreat"/><br/>
-<br/>
-<label>password : </label>
-<br/>
-<input type="text" id="password" placeholder="************"/><br/>
-<br/>
-<input type="button" id="loginbtn" value="Login"/>
-<input type="button" id="cancel" value="Cancel"/>
-<form class="form" action="#" id="login">
-<h3>Not part of our awesome team yet?Don't panic!Just register with us!</h3>
-<hr/><br/>
-<label>Name</label>
-<br/>
-<input type="text" id="first_name" placeholder="Lucy"/><br/>
-<label>Last Name</label>
-<br/>
-<input type="text" id="last_name" placeholder="Majestic"/><br/>
-<br/>
-<label>Email</label>
-<br/>
-<input type="text" id="email" placeholder="Majestic"/><br/>
-<br/>
-<label>password : </label>
-<br/>
-<input type="text" id="password" placeholder="************"/><br/>
-<br/>
-<input type="button" id="registerBtn" value="Sign IN"/>
-<input type="button" id="cancel" value="Cancel"/>
-<br/>
-<br/>
+  <div id="mainform">
+    <h1>Sharing is Caring</h1>
 
-  </body>
+    <div class="form" id="popup">
+      <b>Wecome(back?) to paradise</b><hr/>
+      <p id="onclick">Sign In/Sign Up</p>
+      <br/>
+    </div>
+
+    <div id="contactdiv">
+      <form class="form" action="/login" id="contact" method="POST">
+        <h3>Login Form</h3>
+        <hr/><br/>
+        <label>email </label>
+        <br/>
+        <input type="text" id="email" placeholder="LucyTheGreat"/><br/>
+        <br/>
+        <label>password : </label>
+        <br/>
+        <input type="password" id="password"  placeholder="************"/><br/>
+        <br/>
+        <input type="submit" id="loginbtn" value="Login"/>
+        <input type="button" id="cancel" value="Cancel"/>
+      <form class="form" action="/register" id="login" method="POST">
+        <h3>Not part of our awesome team yet?Don't panic!Just register with us!</h3>
+        <hr/><br/>
+        <label>Name</label>
+        <br/>
+        <input type="text" id="first_name" name="first_name" placeholder="Lucy"/><br/>
+        <label>Last Name</label>
+        <br/>
+        <input type="text" id="last_name" name="last_name" placeholder="Majestic"/><br/>
+        <br/>
+        <label>Email</label>
+        <br/>
+        <input type="text" id="email" name="email" placeholder="Majestic"/><br/>
+        <br/>
+        <label>password : </label>
+        <br/>
+        <input type="password" id="password" name="password" placeholder="************"/><br/>
+        <br/>
+        <input type="submit" id="registerBtn" value="Sign IN"/>
+        <input type="button" id="cancel" value="Cancel"/>
+        <br/>
+        <br/>
+      </form>
+      </form>
+    </div>
+  </div>
+</body>
 </html>
