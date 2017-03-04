@@ -135,12 +135,14 @@ app.get("/login", (req, res) =>{
 
 app.post('/login', function(req, res) {
   const {email, password} = req.body;
-   knex.select(email, password)
+  console.log(req.body)
+   knex.select("email", "password")
    .from('users')
+   .where('email', '=', email)
    .then(function(result){
 
      req.session = { email };
-     res.redirect("/")
+     res.redirect("/users")
    })
    .catch(function(error){
    console.log(error);

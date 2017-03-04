@@ -26,8 +26,8 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.pop.js"></script>
-    <script type="text/javascript" src="/scripts/jquery_drop.js"></script>
+    <script type="text/javascript" src="/vendor/jquery.pop.js"></script>
+    <script type="text/javascript" src="/vendor/jquery_drop.js"></script>
 
 
   <body>
@@ -39,13 +39,13 @@
     <div class = "container-fluid">
 
       <div class="navbar-header">
-        <img id="logo" src="./styles/logo.png">
+        <img class="logo" src="./styles/logo.png">
 
       </div>
       <div>
 
       </div>
-        <h1 id=#txt>Maestro</h1>
+        <h1 id="txt">Maestro</h1>
 
         <div class="dropdown">
           <button type = "" class="dropbtn">Dropdown</button>
@@ -113,11 +113,11 @@
         <hr/><br/>
         <label>email </label>
         <br/>
-        <input type="text" id="email" placeholder="LucyTheGreat"/><br/>
+        <input type="text" id="email-login" name="email" placeholder="LucyTheGreat"/><br/>
         <br/>
         <label>password : </label>
         <br/>
-        <input type="password" id="password"  placeholder="************"/><br/>
+        <input type="password" name="password" id="password-login"  placeholder="************"/><br/>
         <br/>
         <input type="submit" id="loginbtn" value="Login"/>
         <input type="button" id="cancel" value="Cancel"/>
