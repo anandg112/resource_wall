@@ -263,7 +263,7 @@ app.get("/search-user", (req, res) => {
 
 
 app.get("/search", (req, res) => {
-res.render("search")
+res.render("partials/search")
 // console.log(req.body.search)
 })
 
