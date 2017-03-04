@@ -149,8 +149,15 @@ app.get("/users/:id", (req, res) => {
 
 //Macky: Line 150 to line 200 is mine. Don't touch.
 app.get("/search", (req, res) => {
-res.render("tags.ejs")
+res.render("search")
+// console.log(req.body.search)
 })
+
+// app.post("/search", (req, res) => {
+//   const tag = req.body.tag
+//   console.log(tag)
+// res.redirect("/tags/req.body.search")
+// })
 
 
 app.get("/tags/:tags", (req, res) => {
