@@ -2,12 +2,13 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT          = process.env.PORT || 8080;
+const ENV           = process.env.ENV || "development";
+const express       = require("express");
+const bodyParser    = require("body-parser");
+const sass          = require("node-sass-middleware");
+const app           = express();
+const cookieSession = require("cookie-session");
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -38,10 +39,22 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+
+app.get("/", (req, res) => {
+  res.render("show_tile");
+});
+
 
 app.get("/", (req, res) => {
   res.render("show_tile");
@@ -77,6 +90,71 @@ app.get("/movies", (req, res) => {
     .catch((error) => {
     console.log(error);
     });
+});
+
+
+app.get("/show_tile/:index", (req, res) => {
+  var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
+    res.render("show_tile", urlObject);
+});
+
+app.get('/show_tile/:user', (req, res) => {
+  var templateVars = {user: user};
+    res.render("show_tile", user);
+});
+
+app.get("/register", (req, res) =>{
+  res.render("index");
+});
+
+
+app.post('/register', function(req, res) {
+  const {first_name, last_name, email, password} = req.body;
+  console.log(req.body)
+  knex.insert({
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password: password
+  })
+  .into('users')
+  .then(function(result){
+    req.session = { email };
+    res.send("OK");
+  })
+  .catch(function(error){
+    res.send("Failed");
+  });
+});
+
+app.get("/login", (req, res) =>{
+  res.render("index");
+});
+
+app.post('/login', function(req, res) {
+  const {email, password} = req.body;
+   knex.select(email, password)
+   .from('users')
+   .then(function(result){
+
+     req.session = { email };
+     res.redirect("/")
+   })
+   .catch(function(error){
+   console.log(error);
+   });
+})
+
+app.post("/logout", (req, res) =>{
+  req.session = null;
+  res.redirect("/")
+})
+
+app.get('/show_tile/:index', (req, res) =>{
+  var urlObject = {url: urlDatabase[req.params.index]};
+  console.log(urlObject);
+  console.log(urlDatabase);
+  res.render("show_tile", urlObject);
 });
 
 app.get("/movies/:id", (req, res) => {
@@ -138,20 +216,6 @@ app.get("/search-user", (req, res) => {
     res.render('search-user.ejs');
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Macky: Line 150 to line 200 is mine. Don't touch.
 // app.get("/test", (req, res) => {
 // res.render(/test.ejs)
@@ -198,10 +262,44 @@ app.get("/search-user", (req, res) => {
 
 
 
+app.get("/search", (req, res) => {
+res.render("search")
+// console.log(req.body.search)
+})
+
+// app.post("/search", (req, res) => {
+//   const tag = req.body.tag
+//   console.log(tag)
+// res.redirect("/tags/req.body.search")
+// })
+
+
+app.get("/tags/:tags", (req, res) => {
+  knex('movies')
+    .join('tags', 'movies.tag_id', '=', 'tags.id')
+    .select('movies.youtubeid')
+    .where('name', req.params.tags)
+    // .select('youtubeid')
+    // .from('movies')
+    // .join('tags', {'tags.id': 'movies.tag_id'})
+    // // .from('movies')
+    // // .join('tags', 'tag_id', 'id')
+    // .where('tags.name', 'req.params.tags')
+    .then((results) => {
+      res.json(results);
+      // console.log(results)
+      // console.log(req.params())
+      // console.log(tags.name)
+    })
+    .catch((error) => {
+    console.log(error);
+    });
+});
 
 
 
 
+ // SELECT youtubeid FROM MOVIES JOIN TAGS ON (tag_id = movies.id) WHERE tags.name = 'music'
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
