@@ -72,7 +72,6 @@ app.get("/users", (req, res) => {
   knex
     .select('*')
     .from('users')
-    //.where('youtubeid', 'Yqq91WC3XWk')
     .then((results) => {
       res.json(results);
     })
@@ -85,7 +84,6 @@ app.get("/movies", (req, res) => {
   knex
     .select('*')
     .from('movies')
-    //.where('youtubeid', 'Yqq91WC3XWk')
     .then((results) => {
       res.json(results);
     })
@@ -161,11 +159,15 @@ app.get('/show_tile/:index', (req, res) =>{
 
 app.get("/movies/:id", (req, res) => {
   knex
-    .select('youtubeid')
+    .select('*')
     .from('movies')
-    .where('youtubeid', 'Yqq91WC3XWk')
+    .where('youtubeid', req.params.id)
     .then((results) => {
-      res.render('tile.ejs');
+      //console.log(results);
+      //console.log(results[0]);
+
+      var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
+      res.render('tile.ejs', templateVars);
     })
     .catch((error) => {
     console.log(error);
@@ -175,10 +177,12 @@ app.get("/movies/:id", (req, res) => {
 app.get("/users/:id", (req, res) => {
   knex
     .select('*')
-    .from('users')
-    .where('youtubeid', 'Yqq91WC3XWk')
+    .from('movies')
+    .where('id_user', req.params.id)
     .then((results) => {
-      res.json(results);
+      console.log(results);
+      var templateVars = {user_id: req.params.id, movies: results};
+      res.render('user-movies.ejs', templateVars);
     })
     .catch((error) => {
     console.log(error);

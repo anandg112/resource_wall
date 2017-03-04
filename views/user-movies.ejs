@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+  </head>
+
+<body>
+
+  <% for (movie of movies){ %>
+  <main class="container">
+
+  <div id = "titleName">
+    <%=  movie.title%>
+  </div>
+
+  <div id = "preview">
+    <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= movie.youtubeid%>" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div id = "descrip">
+    <%= movie.description %>
+  </div>
+
+  <div>
+    <i class="material-icons">favorite</i>
+  </div>
+
+  </main>
+  <% } %>
+
+</body>
+</html>
