@@ -51,29 +51,25 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/", (req, res) => {
-  res.render("show_tile");
-});
+// app.get("/", (req, res) => {
+//   res.render("show_tile");
+// });
+//
+//
+// app.get("/", (req, res) => {
+//   res.render("show_tile");
+// });
 
-
-app.get("/", (req, res) => {
-  res.render("show_tile");
-});
-
-// var index = 0;
-// var urlDatabase = {
-//    0: 'qyyJKd-zXRE',
-//    1: 'Lgn1hV3weE8',
-//    2: 'PSVN4YZGaeU'
-// };
-// var users = {};
 
 app.get("/users", (req, res) => {
   knex
     .select('*')
     .from('users')
     .then((results) => {
-      res.json(results);
+      //res.json(results);
+      console.log(results);
+      var templateVars = {results: results};
+      res.render('users.ejs', templateVars);
     })
     .catch((error) => {
       console.log(error);
@@ -93,15 +89,15 @@ app.get("/movies", (req, res) => {
 });
 
 
-app.get("/show_tile/:index", (req, res) => {
-  var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
-    res.render("show_tile", urlObject);
-});
+// app.get("/show_tile/:index", (req, res) => {
+//   var urlObject = {url: urlDatabase[req.params.index].substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0]};
+//     res.render("show_tile", urlObject);
+// });
 
-app.get('/show_tile/:user', (req, res) => {
-  var templateVars = {user: user};
-    res.render("show_tile", user);
-});
+// app.get('/show_tile/:user', (req, res) => {
+//   var templateVars = {user: user};
+//     res.render("show_tile", user);
+// });
 
 app.get("/register", (req, res) =>{
   res.render("index");
@@ -152,12 +148,12 @@ app.post("/logout", (req, res) =>{
   res.redirect("/")
 })
 
-app.get('/show_tile/:index', (req, res) =>{
-  var urlObject = {url: urlDatabase[req.params.index]};
-  console.log(urlObject);
-  console.log(urlDatabase);
-  res.render("show_tile", urlObject);
-});
+// app.get('/show_tile/:index', (req, res) =>{
+//   var urlObject = {url: urlDatabase[req.params.index]};
+//   console.log(urlObject);
+//   console.log(urlDatabase);
+//   res.render("show_tile", urlObject);
+// });
 
 app.get("/movies/:id", (req, res) => {
   knex
@@ -205,8 +201,6 @@ app.get("/users/:id", (req, res) => {
     .where('users.id', req.params.id)
     .then((results) => {
       var templateVars = {user_id: req.params.id, userMovies: results, firstName: results[0].first_name };
-      //console.log();
-      //console.log(user_id);
       res.render("liked-vid-user.ejs", templateVars);
     })
     .catch((error) => {
@@ -214,9 +208,9 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.get("/search-user", (req, res) => {
-    res.render('search-user.ejs');
-});
+// app.get("/search-user", (req, res) => {
+//     res.render('search-user.ejs');
+// });
 
 //Macky: Line 150 to line 200 is mine. Don't touch.
 // app.get("/test", (req, res) => {
@@ -279,7 +273,7 @@ res.render("partials/search")
 app.get("/tags/:tags", (req, res) => {
   knex('movies')
     .join('tags', 'movies.tag_id', '=', 'tags.id')
-    .select('movies.youtubeid')
+    .select('movies.youtubeid', 'movies.title', 'movies.likes', 'movies.description')
     .where('name', req.params.tags)
     // .select('youtubeid')
     // .from('movies')
@@ -288,10 +282,8 @@ app.get("/tags/:tags", (req, res) => {
     // // .join('tags', 'tag_id', 'id')
     // .where('tags.name', 'req.params.tags')
     .then((results) => {
-      res.json(results);
-      // console.log(results)
-      // console.log(req.params())
-      // console.log(tags.name)
+      var templateVars = {tags: req.params.tags, youtubeTags: results};
+        res.render("search-tags.ejs", templateVars);
     })
     .catch((error) => {
     console.log(error);

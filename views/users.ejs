@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Most Liked Videos of a User</title>
+    <title>Users on our Website</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -16,30 +16,17 @@
 <body>
 
   <div class="header">
-    <h2> Saved videos of <%= firstName %> </h2>
+    <h2> Users on Maestro </h2>
   </div>
 
-  <% for (mostLikedOfUser of userMovies){ %>
-
+  <% for (user of results){ %>
     <main class="container">
-      <div id = "titleName">
-        <%=  mostLikedOfUser.title%>
+
+      <div id = "user">
+        <a href="http://localhost:8080/users/<%= user.id %>"> <%= user.first_name %> </a>
       </div>
 
-      <div id = "preview">
-        <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= mostLikedOfUser.youtubeid%>" frameborder="0" allowfullscreen></iframe>
-      </div>
-
-      <div id = "descrip">
-        <%= mostLikedOfUser.description %>
-      </div>
-
-      <div id="like-count">
-        <%= mostLikedOfUser.likes %>
-        <i class="material-icons">favorite</i>
-      </div>
-
-  </main>
+    </main>
 
   <% } %>
 
