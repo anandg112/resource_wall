@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
   res.render("show_tile");
 });
 
-var index = 0;
+// var index = 0;
 // var urlDatabase = {
 //    0: 'qyyJKd-zXRE',
 //    1: 'Lgn1hV3weE8',
@@ -163,59 +163,105 @@ app.get("/movies/:id", (req, res) => {
     .from('movies')
     .where('youtubeid', req.params.id)
     .then((results) => {
-      //console.log(results);
-      //console.log(results[0]);
-
       var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
       res.render('tile.ejs', templateVars);
     })
     .catch((error) => {
-    console.log(error);
+      console.log(error);
+    });
+});
+
+// app.get("/users/:id", (req, res) => {
+//   knex('movies')
+//     .where('id_user', req.params.id)
+//     .then((results) => {
+//       var templateVars = {user_id: req.params.id, movies: results};
+//       res.render('user-movies.ejs', templateVars);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
+
+app.get("/most-liked", (req, res) => {
+  knex('movies')
+    .orderBy('likes', 'desc')
+    .limit(3)
+    .then((results) => {
+      var templateVars = {userMovies: results};
+      res.render('most-liked.ejs', templateVars);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
 
 app.get("/users/:id", (req, res) => {
-  knex
-    .select('*')
-    .from('movies')
-    .where('id_user', req.params.id)
+  knex('movies')
+    .innerJoin('users','movies.id_user', '=', 'users.id')
+    .orderBy('likes', 'desc')
+    .where('users.id', req.params.id)
     .then((results) => {
-      console.log(results);
-      var templateVars = {user_id: req.params.id, movies: results};
-      res.render('user-movies.ejs', templateVars);
+      var templateVars = {user_id: req.params.id, userMovies: results, firstName: results[0].first_name };
+      //console.log();
+      //console.log(user_id);
+      res.render("liked-vid-user.ejs", templateVars);
     })
     .catch((error) => {
-    console.log(error);
+      console.log(error);
     });
 });
-// app.get("/get_tile", (req, res) => {
-//   res.render("get_tile");
-// });
-//
-// app.post("/show_tile", (req, res) => {
-//   var url = req.body.url;
-//   urlDatabase[index] = url.substring(urlDatabase[req.params.index].lastIndexOf("=") + 1).split("&")[0];
-//   res.redirect("/show_tile/" + index);
-//   index += 1;
-// });
-//
-// app.get("/show_tile/:index", (req, res) => {
-//   var urlObject = {url: urlDatabase[req.params.index]};
-//   res.render("show_tile", urlObject);
-// });
-//
-// app.get("/show_tiles", (req, res) => {
-//   console.log(urlDatabase);
-//   var urls = {urls: urlDatabase};
-//   res.render("show_tiles", urls);
-// });
 
-//app.get('/show_tile/:user', (req, res) => {
-//   var templateVars = {user: user};
-//   res.render("show_tile", user);
-// });
+app.get("/search-user", (req, res) => {
+    res.render('search-user.ejs');
+});
 
 //Macky: Line 150 to line 200 is mine. Don't touch.
+// app.get("/test", (req, res) => {
+// res.render(/test.ejs)
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/search", (req, res) => {
 res.render("search")
 // console.log(req.body.search)

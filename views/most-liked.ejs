@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>User Movies</title>
+    <title>Most Liked Videos</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/Anand.css" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -14,28 +14,35 @@
   </head>
 
 <body>
-  <h1> Your Saved Videos </h1>
-  <% for (movie of movies){ %>
+  <div class="header">
+    <h1> Most Liked Videos </h1>
+  </div>
+  <% for (mostLiked of userMovies){ %>
   <main class="container">
 
   <div id = "titleName">
-    <%=  movie.title%>
+    <%=  mostLiked.title%>
   </div>
 
   <div id = "preview">
-    <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= movie.youtubeid%>" frameborder="0" allowfullscreen></iframe>
+    <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= mostLiked.youtubeid%>" frameborder="0" allowfullscreen></iframe>
   </div>
 
   <div id = "descrip">
-    <%= movie.description %>
+    <%= mostLiked.description %>
   </div>
 
-  <div>
+  <div id="like-count">
+    <%= mostLiked.likes %>
     <i class="material-icons">favorite</i>
   </div>
 
   </main>
   <% } %>
+
+  <footer class="container">
+    <a href ='#'> Insert a new video </a>
+  </footer>
 
 </body>
 </html>
