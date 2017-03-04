@@ -250,8 +250,9 @@ app.get("/search-user", (req, res) => {
 
 
 
-
-
+app.get("/input", (req,res) => {
+res.render("input")
+})
 
 
 
