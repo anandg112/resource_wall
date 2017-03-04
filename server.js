@@ -211,6 +211,45 @@ app.get("/users/:id", (req, res) => {
 //   res.render("show_tile", user);
 // });
 
+//Macky: Line 150 to line 200 is mine. Don't touch.
+app.get("/search", (req, res) => {
+res.render("search")
+// console.log(req.body.search)
+})
+
+// app.post("/search", (req, res) => {
+//   const tag = req.body.tag
+//   console.log(tag)
+// res.redirect("/tags/req.body.search")
+// })
+
+
+app.get("/tags/:tags", (req, res) => {
+  knex('movies')
+    .join('tags', 'movies.tag_id', '=', 'tags.id')
+    .select('movies.youtubeid')
+    .where('name', req.params.tags)
+    // .select('youtubeid')
+    // .from('movies')
+    // .join('tags', {'tags.id': 'movies.tag_id'})
+    // // .from('movies')
+    // // .join('tags', 'tag_id', 'id')
+    // .where('tags.name', 'req.params.tags')
+    .then((results) => {
+      res.json(results);
+      // console.log(results)
+      // console.log(req.params())
+      // console.log(tags.name)
+    })
+    .catch((error) => {
+    console.log(error);
+    });
+});
+
+
+
+
+ // SELECT youtubeid FROM MOVIES JOIN TAGS ON (tag_id = movies.id) WHERE tags.name = 'music'
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
