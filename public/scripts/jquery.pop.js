@@ -12,7 +12,7 @@ $(document).ready(function() {
     $(this).parent().parent().hide();
   });
 
-  $("#registerBtn").click(function(e) {
+  $(".btn.btn-primary").click(function(e) {
     e.preventDefault();
     var name = $("#first_name").val();
     var lastname = $("#last_name").val();
@@ -30,8 +30,7 @@ $(document).ready(function() {
     }).done((data) => {
       console.log(data)
       if (data === "OK") {
-        $('form').hide();
-        $("#contactdiv").css("background: white;")
+        $(".form-horizontal").hide();
       } else {
         alert("Oops something went wrong");
       }
@@ -50,6 +49,8 @@ $(document).ready(function() {
       }
     });
   });
+
+  
 
 
 
