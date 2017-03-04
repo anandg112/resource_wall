@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
   res.render("show_tile");
 });
 
-var index = 0;
+// var index = 0;
 // var urlDatabase = {
 //    0: 'qyyJKd-zXRE',
 //    1: 'Lgn1hV3weE8',
@@ -85,8 +85,6 @@ app.get("/movies/:id", (req, res) => {
     .from('movies')
     .where('youtubeid', req.params.id)
     .then((results) => {
-      //console.log(results);
-      //console.log(results[0]);
       var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
       res.render('tile.ejs', templateVars);
     })
@@ -95,32 +93,49 @@ app.get("/movies/:id", (req, res) => {
     });
 });
 
-app.get("/users/:id", (req, res) => {
-  knex
-    .select('*')
-    .from('movies')
-    .where('id_user', req.params.id)
-    .then((results) => {
-      var templateVars = {user_id: req.params.id, movies: results};
-      res.render('user-movies.ejs', templateVars);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
+// app.get("/users/:id", (req, res) => {
+//   knex('movies')
+//     .where('id_user', req.params.id)
+//     .then((results) => {
+//       var templateVars = {user_id: req.params.id, movies: results};
+//       res.render('user-movies.ejs', templateVars);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
 
-app.get("/likes", (req, res) => {
+app.get("/most-liked", (req, res) => {
   knex('movies')
-    .orderBy(Number('likes'), 'desc')
-    //.limit(3)
+    .orderBy('likes', 'desc')
+    .limit(3)
     .then((results) => {
-      console.log(results);
       var templateVars = {userMovies: results};
       res.render('most-liked.ejs', templateVars);
     })
     .catch((error) => {
       console.log(error);
     });
+});
+
+app.get("/users/:id", (req, res) => {
+  knex('movies')
+    .innerJoin('users','movies.id_user', '=', 'users.id')
+    .orderBy('likes', 'desc')
+    .where('users.id', req.params.id)
+    .then((results) => {
+      var templateVars = {user_id: req.params.id, userMovies: results, firstName: results[0].first_name };
+      //console.log();
+      //console.log(user_id);
+      res.render("liked-vid-user.ejs", templateVars);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+app.get("/search-user", (req, res) => {
+    res.render('search-user.ejs');
 });
 
 
