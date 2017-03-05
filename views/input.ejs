@@ -11,21 +11,19 @@
 
     <div class="inputbox">
       <h5>INPUT NEW LINK HERE</h5>
-      <form method="POST">
-        <textarea class="inputfield" placeholder="insert link here"></textarea> <br>
-        <textarea class="inputfield" placeholder="insert title here"></textarea> <br>
-        <textarea class="inputfield" placeholder="insert description"></textarea> <br>
+      <form method="POST" action="/input">
+        <textarea name="video" class="inputfield" placeholder="insert link here"></textarea> <br>
+        <textarea name="title" class="inputfield" placeholder="insert title here"></textarea> <br>
+        <textarea name="description" class="inputfield" placeholder="insert description"></textarea> <br>
         <p>Genre:</p><select name="tags">
-          <option value="music">Music</option>
-          <option value="magic">Magic</option>
-          <option value="javascript">Javascript</option>
-          <option value="cooking">Cooking</option>
-          <option value="cars">Cars</option>
-          <option value="painting">Painting</option>
-        <input type="submit" name="submit">
-
+          <option value="1">Music</option>
+          <option value="2">Magic</option>
+          <option value="3">Javascript</option>
+          <option value="4">Cooking</option>
+          <option value="5">Cars</option>
+          <option value="6">Painting</option>
         </select>
-
+          <input type="submit" name="submit">
       </form>
     </div>
   </body>

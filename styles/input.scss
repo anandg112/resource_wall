@@ -15,5 +15,29 @@ p {
     float: left;
     font-size: 12px;
     position: relative;
-    bottom: 8px;
+    bottom: 10px;
+}
+
+.inputbtn {
+  width: 30px;
+  font-size: 10px;
+  background-color: grey;
+
+  border: ridge;
+  border-color: #4f616d;
+  padding: 0.5px;
+  float: right;
+  position: relative;
+  margin-right: 15px;
+
+}
+
+.inputbtn:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+
+}
+
+select {
+  margin-left:10px;
 }
