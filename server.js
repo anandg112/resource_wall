@@ -76,17 +76,17 @@ app.get("/users", (req, res) => {
     });
 });
 
-app.get("/movies", (req, res) => {
-  knex
-    .select('*')
-    .from('movies')
-    .then((results) => {
-      res.json(results);
-    })
-    .catch((error) => {
-    console.log(error);
-    });
-});
+// app.get("/movies", (req, res) => {
+//   knex
+//     .select('*')
+//     .from('movies')
+//     .then((results) => {
+//       res.json(results);
+//     })
+//     .catch((error) => {
+//     console.log(error);
+//     });
+// });
 
 
 // app.get("/show_tile/:index", (req, res) => {
@@ -136,7 +136,7 @@ app.post('/login', function(req, res) {
    .then(function(result){
 
      req.session = { email };
-     res.redirect("/users")
+     res.redirect("/movies")
    })
    .catch(function(error){
    console.log(error);
@@ -198,7 +198,7 @@ const {likes, id} = req.body;
 });
 
 
-app.get("/most-liked", (req, res) => {
+app.get("/movies", (req, res) => {
   knex('movies')
     .orderBy('likes', 'desc')
     .limit(3)
@@ -233,6 +233,63 @@ app.get("/users/:id", (req, res) => {
 // app.get("/test", (req, res) => {
 // res.render(/test.ejs)
 // }
+
+app.get("/input", (req,res) => {
+res.render("input")
+})
+
+app.post("/input", (req,res) => {
+  knex
+    .select('id')
+    .from('users')
+    .where('email', req.session.email)
+    .then((results) => {
+      const id_user = results;
+        const youtubeid = req.body.video.slice(-11);
+        const title = req.body.title;
+        const description = req.body.description;
+        const tag_id = req.body.tags;
+        console.log(id_user[0].id);
+        console.log(youtubeid);
+        console.log(title);
+        console.log(description);
+        console.log(tag_id);
+        console.log(req.session.email);
+          knex('movies')
+           .insert({
+
+            youtubeid: youtubeid,
+            title: title,
+            description: description,
+            id_user: id_user[0].id,
+            tag_id: tag_id,
+            likes: 0
+          })
+
+          .then(function(result){
+          res.redirect("/");
+        })
+        .catch(function(error){
+        res.send("Failed");
+      })
+    })
+  })
+
+
+// knex.insert({
+//       first_name: first_name,
+//       last_name: last_name,
+//       email: email,
+//       password: password
+//   })
+//   .into('users')
+//   .then(function(result){
+//     req.session = { email };
+//     res.send("OK");
+//   })
+//   .catch(function(error){
+//     res.send("Failed");
+
 
 app.get("/search", (req, res) => {
 res.render("partials/search")

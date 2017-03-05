@@ -11,6 +11,11 @@ $(document).ready(function(){
   function goToURL(tagname){
   window.location.href=`/tags/${tagname}`
 }
+
+
+  $(".inputbtn").click(function(ev){
+
+  })
 })
 
 

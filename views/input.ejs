@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/input.css" type="text/css" />
+      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script type="text/javascript" src="/scripts/macky.js"></script>
+      <meta charset="UTF-8">
+  <title>Search Bar</title>
+  </head>
+  <body>
+
+    <div class="inputbox">
+      <h5>INPUT NEW LINK HERE</h5>
+      <form method="POST" action="/input">
+        <textarea name="video" class="inputfield" placeholder="insert link here"></textarea> <br>
+        <textarea name="title" class="inputfield" placeholder="insert title here"></textarea> <br>
+        <textarea name="description" class="inputfield" placeholder="insert description"></textarea> <br>
+        <p>Genre:</p><select name="tags">
+          <option value="1">Music</option>
+          <option value="2">Magic</option>
+          <option value="3">Javascript</option>
+          <option value="4">Cooking</option>
+          <option value="5">Cars</option>
+          <option value="6">Painting</option>
+        </select>
+          <input type="submit" name="submit">
+      </form>
+    </div>
+  </body>
+</html>
