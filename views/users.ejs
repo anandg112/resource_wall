@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Users on our Website</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+  </head>
+
+<body>
+
+  <div class="header">
+    <h2> Users on Maestro </h2>
+  </div>
+
+  <% for (user of results){ %>
+    <main class="container">
+
+      <div id = "user">
+        <a href="http://localhost:8080/users/<%= user.id %>"> <%= user.first_name %> </a>
+      </div>
+
+    </main>
+
+  <% } %>
+
+  <footer class="container">
+    <a href ='#'> Insert a new video </a>
+  </footer>
+
+</body>
+</html>
