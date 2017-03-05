@@ -180,6 +180,13 @@ app.get("/movies/:id", (req, res) => {
 //       console.log(error);
 //     });
 // });
+// app.get("/user/:likes", (req, res) =>{
+//   res.
+// })
+//
+// app.post("/likes", (req,res) =>{
+//
+// })
 
 app.get("/most-liked", (req, res) => {
   knex('movies')

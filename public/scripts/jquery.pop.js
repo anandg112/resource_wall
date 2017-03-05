@@ -22,14 +22,13 @@ $(document).ready(function() {
     if (!name || !lastname || !email || !password){
       return alert("Please fill up the whole form");
     }else{
-      $("#register").css("display", "none");
+      $("#regbox").css("display", "none");
     }
 
     $.ajax({
       method: "POST",
       url:"/register"
     }).done((data) => {
-      console.log(data)
       if (data === "OK") {
         $(".form-horizontal").hide();
       } else {
@@ -40,10 +39,9 @@ $(document).ready(function() {
   });
 
 
-  $("#contact").submit(function(e) {
+  $("#loginbtn").submit(function(e) {
   var email = $("#email-login").val();
   var password = $("#password-login").val();
-
     if (!email || !password){
      alert("Please enter both email and password");
      }else{
