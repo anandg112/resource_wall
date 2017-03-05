@@ -180,6 +180,23 @@ app.get("/movies/:id", (req, res) => {
 //       console.log(error);
 //     });
 // });
+// app.get("/user/:likes", (req, res) =>{
+//   res.
+// })
+
+// app.post("/users/:likes", (req,res) =>{
+// const {likes, id} = req.body;
+//   knex("movies")
+//   .where( "id", "=",1)
+//   .increment("likes", 1)
+//   .then((implement) =>{
+//     res.send("OK");
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// });
+
 
 app.get("/most-liked", (req, res) => {
   knex('movies')
@@ -212,10 +229,6 @@ app.get("/users/:id", (req, res) => {
 //     res.render('search-user.ejs');
 // });
 
-//Macky: Line 150 to line 200 is mine. Don't touch.
-// app.get("/test", (req, res) => {
-// res.render(/test.ejs)
-// }
 
 
 
@@ -244,12 +257,61 @@ app.get("/users/:id", (req, res) => {
 
 
 
+app.get("/input", (req,res) => {
+res.render("input")
+})
+
+app.post("/input", (req,res) => {
+  knex
+    .select('id')
+    .from('users')
+    .where('email', req.session.email)
+    .then((results) => {
+      const id_user = results;
+        const youtubeid = req.body.video.slice(-11);
+        const title = req.body.title;
+        const description = req.body.description;
+        const tag_id = req.body.tags;
+        console.log(id_user[0].id);
+        console.log(youtubeid);
+        console.log(title);
+        console.log(description);
+        console.log(tag_id);
+        console.log(req.session.email);
+          knex('movies')
+           .insert({
+
+            youtubeid: youtubeid,
+            title: title,
+            description: description,
+            id_user: id_user[0].id,
+            tag_id: tag_id,
+            likes: 0
+          })
+
+          .then(function(result){
+          res.redirect("/");
+        })
+        .catch(function(error){
+        res.send("Failed");
+      })
+    })
+  })
 
 
-
-
-
-
+// knex.insert({
+//       first_name: first_name,
+//       last_name: last_name,
+//       email: email,
+//       password: password
+//   })
+//   .into('users')
+//   .then(function(result){
+//     req.session = { email };
+//     res.send("OK");
+//   })
+//   .catch(function(error){
+//     res.send("Failed");
 
 
 
