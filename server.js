@@ -184,18 +184,18 @@ app.get("/movies/:id", (req, res) => {
 //   res.
 // })
 
-// app.post("/users/:likes", (req,res) =>{
-// const {likes, id} = req.body;
-//   knex("movies")
-//   .where( "id", "=",1)
-//   .increment("likes", 1)
-//   .then((implement) =>{
-//     res.send("OK");
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-// });
+app.post("/users/:likes", (req,res) =>{
+const {likes, id} = req.body;
+  knex("movies")
+  .where( "id", "=", id)
+  .increment("likes", 1)
+  .then((implement) =>{
+    res.send("OK");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+});
 
 
 app.get("/movies", (req, res) => {
@@ -229,33 +229,10 @@ app.get("/users/:id", (req, res) => {
 //     res.render('search-user.ejs');
 // });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Macky: Line 150 to line 200 is mine. Don't touch.
+// app.get("/test", (req, res) => {
+// res.render(/test.ejs)
+// }
 
 app.get("/input", (req,res) => {
 res.render("input")
@@ -312,12 +289,6 @@ app.post("/input", (req,res) => {
 //   })
 //   .catch(function(error){
 //     res.send("Failed");
-
-
-
-
-
-
 
 
 app.get("/search", (req, res) => {
