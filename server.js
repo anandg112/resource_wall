@@ -219,10 +219,6 @@ app.get("/users/:id", (req, res) => {
 //     res.render('search-user.ejs');
 // });
 
-//Macky: Line 150 to line 200 is mine. Don't touch.
-// app.get("/test", (req, res) => {
-// res.render(/test.ejs)
-// }
 
 
 
@@ -251,12 +247,49 @@ app.get("/users/:id", (req, res) => {
 
 
 
+app.get("/input", (req,res) => {
+res.render("input")
+})
 
+app.post("/input", (req,res) => {
+  const youtubeid = req.body.video.slice(-11);
+  const title = req.body.title;
+  const description = req.body.description;
+  const id_user = req.session['id']
+  const tag_id = req.body.tags;
+  console.log(id_user)
+  console.log(youtubeid)
+  knex.insert({
 
+    youtubeid: youtubeid,
+    title: title,
+    description: description,
+    id_user: id_user,
+    tag_id: tag_id,
+    likes: 0
+  })
+    .into('movies')
+    .then(function(result){
+      res.redirect("/");
+  })
+    .catch(function(error){
+      res.send("Failed");
+})
+})
 
-
-
-
+// knex.insert({
+//       first_name: first_name,
+//       last_name: last_name,
+//       email: email,
+//       password: password
+//   })
+//   .into('users')
+//   .then(function(result){
+//     req.session = { email };
+//     res.send("OK");
+//   })
+//   .catch(function(error){
+//     res.send("Failed");
 
 
 
