@@ -18,17 +18,17 @@ $(document).ready(function() {
     var lastname = $("#last_name").val();
     var email = $("#email").val();
     var password = $("#password").val();
-    if (!name || !lastname || !email|| !password){
+
+    if (!name || !lastname || !email || !password){
       return alert("Please fill up the whole form");
     }else{
-      $("#register").css("display", "none");
+      $("#regbox").css("display", "none");
     }
 
     $.ajax({
       method: "POST",
       url:"/register"
     }).done((data) => {
-      console.log(data)
       if (data === "OK") {
         $(".form-horizontal").hide();
       } else {
@@ -39,18 +39,29 @@ $(document).ready(function() {
   });
 
 
-  $("#loginbtn").click(function() {
-  var email = $("#email").val();
-  var password = $("#password").val();
-    if (!email|| !password){
-    alert("Username or Password was Wrong");
-      }else{
-    $("#logindiv").css("display", "none");
-      }
-    });
-  });
+  $("#loginbtn").submit(function(e) {
+  var email = $("#email-login").val();
+  var password = $("#password-login").val();
+    if (!email || !password){
+     alert("Please enter both email and password");
+     }else{
 
-  
+      $.ajax({
+        method:"POST",
+        url: "/login"
+      })
+      .done(function() {
+        $("#logindiv").css("display", "none");
+      })
+
+    }
+  })
+});
+
+
+
+
+
 
 
 
