@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <title>Most Liked Videos</title>
+        <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -16,39 +22,107 @@
 
 <body>
 
-  <div class="header">
-    <h2> Most Liked Videos </h2>
-  </div>
-
-  <% for (mostLiked of userMovies){ %>
-    <main class="container">
-
-    <div id = "titleName">
-      <%=  mostLiked.title%>
-    </div>
-
-    <div id = "preview">
-      <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= mostLiked.youtubeid%>" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <div id = "descrip">
-      <%= mostLiked.description %>
-    </div>
-
-    <div>
-      <%= mostLiked.likes %>
-      <i class="material-icons" id="like" type="submit">favorite</i>
-      <i class="material-icons" id="like-change">favorite</i>
-    </div>
 
 
+        <div class="jumbotron">
+          <h4 class=display-8> Most Liked Videos </h2>
+        </div>
 
-  </main>
-  <% } %>
 
-  <footer class="container">
-    <a href ='#'> Insert a new video </a>
-  </footer>
+          <div class="card-deck">
+            <% for (mostLiked of userMovies){ %>
+
+            <div class ="card" style="max-width: 500px">
+               <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= mostLiked.youtubeid%>"></iframe>
+              </div>
+
+
+               <div class="card-block">
+                    <div class="card-title">
+                      <h6><%= mostLiked.title%></h6>
+                    </div>
+                    <div class="card-text">
+                      <%= mostLiked.description %>
+                    </div>
+                    <div class="card-footer">
+                      Likes:<%= mostLiked.likes %>
+                      <i class="material-icons" type="submit">favorite</i>
+                      <i class="icons-color">favorite</i>
+                    </div>
+               </div>
+          </div> <br>
+            <% } %>
+
+
+
+        </div>
+        <br>
+ <button type="button" class="btn btn-primary">Submit New Link</button>
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- <% for (mostLiked of userMovies){ %>
+
+
+            <div class="embed-responsive embed-responsive-16by9">
+
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= mostLiked.youtubeid%>" allowfullscreen>.    </iframe>
+              </div>
+
+            <div class="card-block">
+              <div class="card-title">
+                <%=  mostLiked.title%>
+              </div>
+              <div class="card-text">
+                  <%= mostLiked.description %>
+               </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div id="like-count">
+                <%= mostLiked.likes %>
+<!                <i class="material-icons" type="submit">favorite</i>
+                <i class="icons-color">favorite</i>
+              </div>
+            </div>
+          </div> <% } %>
+        </div>
+      <footer class="container">
+        <a href ='#'> Insert a new video </a>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
