@@ -6,7 +6,9 @@ $(document).ready(function(){
       url:"/users/:likes"
     })
     .done(function(){
-      $
+    $(".material-icons").hide();
+    $(".icons-color").show();
+
     })
 
   })
