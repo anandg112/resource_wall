@@ -76,17 +76,17 @@ app.get("/users", (req, res) => {
     });
 });
 
-app.get("/movies", (req, res) => {
-  knex
-    .select('*')
-    .from('movies')
-    .then((results) => {
-      res.json(results);
-    })
-    .catch((error) => {
-    console.log(error);
-    });
-});
+// app.get("/movies", (req, res) => {
+//   knex
+//     .select('*')
+//     .from('movies')
+//     .then((results) => {
+//       res.json(results);
+//     })
+//     .catch((error) => {
+//     console.log(error);
+//     });
+// });
 
 
 // app.get("/show_tile/:index", (req, res) => {
@@ -136,7 +136,7 @@ app.post('/login', function(req, res) {
    .then(function(result){
 
      req.session = { email };
-     res.redirect("/users")
+     res.redirect("/movies")
    })
    .catch(function(error){
    console.log(error);
@@ -198,7 +198,7 @@ app.get("/movies/:id", (req, res) => {
 // });
 
 
-app.get("/most-liked", (req, res) => {
+app.get("/movies", (req, res) => {
   knex('movies')
     .orderBy('likes', 'desc')
     .limit(3)
