@@ -252,30 +252,42 @@ res.render("input")
 })
 
 app.post("/input", (req,res) => {
-  const youtubeid = req.body.video.slice(-11);
-  const title = req.body.title;
-  const description = req.body.description;
-  const id_user = req.session['id']
-  const tag_id = req.body.tags;
-  console.log(id_user)
-  console.log(youtubeid)
-  knex.insert({
+  knex
+    .select('id')
+    .from('users')
+    .where('email', req.session.email)
+    .then((results) => {
+      const id_user = results;
+        const youtubeid = req.body.video.slice(-11);
+        const title = req.body.title;
+        const description = req.body.description;
+        const tag_id = req.body.tags;
+        console.log(id_user[0].id);
+        console.log(youtubeid);
+        console.log(title);
+        console.log(description);
+        console.log(tag_id);
+        console.log(req.session.email);
+          knex('movies')
+           .insert({
 
-    youtubeid: youtubeid,
-    title: title,
-    description: description,
-    id_user: id_user,
-    tag_id: tag_id,
-    likes: 0
+            youtubeid: youtubeid,
+            title: title,
+            description: description,
+            id_user: id_user[0].id,
+            tag_id: tag_id,
+            likes: 0
+          })
+
+          .then(function(result){
+          res.redirect("/");
+        })
+        .catch(function(error){
+        res.send("Failed");
+      })
+    })
   })
-    .into('movies')
-    .then(function(result){
-      res.redirect("/");
-  })
-    .catch(function(error){
-      res.send("Failed");
-})
-})
+
 
 // knex.insert({
 //       first_name: first_name,
