@@ -184,18 +184,18 @@ app.get("/movies/:id", (req, res) => {
 //   res.
 // })
 
-// app.post("/users/:likes", (req,res) =>{
-// const {likes, id} = req.body;
-//   knex("movies")
-//   .where( "id", "=",1)
-//   .increment("likes", 1)
-//   .then((implement) =>{
-//     res.send("OK");
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-// });
+app.post("/users/:likes", (req,res) =>{
+const {likes, id} = req.body;
+  knex("movies")
+  .where( "id", "=", id)
+  .increment("likes", 1)
+  .then((implement) =>{
+    res.send("OK");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+});
 
 
 app.get("/most-liked", (req, res) => {
@@ -233,47 +233,6 @@ app.get("/users/:id", (req, res) => {
 // app.get("/test", (req, res) => {
 // res.render(/test.ejs)
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.get("/search", (req, res) => {
 res.render("partials/search")
