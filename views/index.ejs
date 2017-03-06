@@ -3,6 +3,8 @@
 <head>
   <title>Research bar</title>
 
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -11,20 +13,16 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 </head>
 <meta charset="utf-8">
-<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/bootstrap-social.css" rel="stylesheet">
+
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/mystuff.css" type="text/css" />
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/jquery.pop.js"></script>
-  <script type="text/javascript" src="/scripts/jquery_drop.js"></script>
+
 
 
 <body>
@@ -59,7 +57,6 @@
         <input type="submit" id="loginbtn" value="Login"/>
       </form>
 
-      </form>
     </div>
 </nav>
 <div id="mainform">
@@ -68,7 +65,7 @@
 
 
           <div class="col-xs-12-col-sm-9">
-                 <form id="regbox" action = "/register" method = "POST" >
+                 <form id="regbox" action ="/register" method ="POST">
                    <h3>Not part of our awesome team yet?Don't panic!!! Just register with us!</h3>
                   <div class="form-group">
                       <label for="firstname" class="col-sm-2-control-label">First Name</label>
@@ -102,31 +99,8 @@
               </form>
 
 </div>
+</div>
 
-  <!-- <div class="form" id="popup">
-
-    <p id="onclick">LogIN</p>
-    <br/>
-  </div>
-
-  <div id="contactdiv">
-    <form class="boxx" action="/login" id="contact" method="POST">
-      <h3>Login Form</h3>
-      <hr/><br/>
-      <label>email </label>
-      <br/>
-      <input type="text" id="email_login" name="email" placeholder="LucyTheGreat"/><br/>
-      <br/>
-      <label>password : </label>
-      <br/>
-      <input type="password" id="password-login" name="password" placeholder="************"/><br/>
-      <br/>
-      <input type="submit" id="loginbtn" value="Login"/>
-      <input type="button" id="cancel" value="Cancel"/>
-    </form>
-
-    </form>
-  </div> -->
 
 </body>
 </html>
