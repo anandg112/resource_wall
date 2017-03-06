@@ -105,11 +105,12 @@ app.get("/register", (req, res) =>{
 
 
 app.post('/register', function(req, res) {
-  const first_name = req.body.first_name;
-  const last_name  = req.body.last_name;
-  const email      = req.body.email;
-  const password   = req.body.password;
-
+  const {first_name, last_name, email, password} = req.body;
+  console.log(req.body)
+//   const first_name = req.body.first_name;
+//   const last_name  = req.body.last_name;
+//   const email      = req.body.email;
+//   const password   = req.body.password;
   knex.insert({
       first_name: first_name,
       last_name: last_name,
@@ -119,6 +120,7 @@ app.post('/register', function(req, res) {
   .into('users')
   .then(function(result){
     req.session = { email };
+    res.send("OK");
     res.redirect("/movies");
     console.log(req.session)
   })
