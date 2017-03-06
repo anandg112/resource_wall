@@ -140,6 +140,7 @@ app.post('/login', function(req, res) {
 
      req.session = { email };
      res.redirect("/movies")
+
    })
    .catch(function(error){
    console.log(error);
@@ -151,45 +152,11 @@ app.post("/logout", (req, res) =>{
   res.redirect("/")
 })
 
-// app.get('/show_tile/:index', (req, res) =>{
-//   var urlObject = {url: urlDatabase[req.params.index]};
-//   console.log(urlObject);
-//   console.log(urlDatabase);
-//   res.render("show_tile", urlObject);
-// });
 
-// app.get("/movies/:id", (req, res) => {
-//   knex
-//     .select('*')
-//     .from('movies')
-//     .where('youtubeid', req.params.id)
-//     .then((results) => {
-//       var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
-//       res.render('tile.ejs', templateVars);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
-
-// app.get("/users/:id", (req, res) => {
-//   knex('movies')
-//     .where('id_user', req.params.id)
-//     .then((results) => {
-//       var templateVars = {user_id: req.params.id, movies: results};
-//       res.render('user-movies.ejs', templateVars);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
-// app.get("/user/:likes", (req, res) =>{
-//   res.
-// })
 
 app.post("/users/:likes", (req,res) =>{
 const {likes, id} = req.body;
-// console.log(req.body);
+;
   knex("movies")
   .where( "id", "=", id)
   .increment("likes", 1)
@@ -208,11 +175,21 @@ app.get("/movies", (req, res) => {
     .orderBy('likes', 'desc')
     .limit(3)
     .then((results) => {
-      var templateVars = {userMovies: results, email: results[0].email, userID: results[0].id_user };
-      res.render('most-liked.ejs', templateVars);
-    })
-    .catch((error) => {
+      knex('users')
+      .where('email', req.session.email)
+      .then((results2) => {
+        var templateVars = {userMovies: results, email: results[0].email, userID: results2[0].id};
+        console.log(results2[0].id, "LOOK HERE MACKY")
+        res.render('most-liked.ejs', templateVars);
+      })
+          .catch((error) => {
       console.log(error);
+
+      var templateVars = {userMovies: results, email: results[0].email, userID: results[0].id_user };
+
+
+    })
+
     });
 });
 
@@ -229,35 +206,6 @@ app.get("/movies/users/:id", (req, res) => {
       console.log(error);
     });
 });
-
-// app.get("/search-user", (req, res) => {
-//     res.render('search-user.ejs');
-// });
-
-//Macky: Line 150 to line 200 is mine. Don't touch.
-// app.get("/test", (req, res) => {
-// res.render(/test.ejs)
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -283,12 +231,7 @@ app.post("/input", (req,res) => {
         const title = req.body.title;
         const description = req.body.description;
         const tag_id = req.body.tags;
-        console.log(id_user[0].id);
-        console.log(youtubeid);
-        console.log(title);
-        console.log(description);
-        console.log(tag_id);
-        console.log(req.session.email);
+
           knex('movies')
            .insert({
 
@@ -301,7 +244,7 @@ app.post("/input", (req,res) => {
           })
 
           .then(function(result){
-          res.redirect("/");
+          res.redirect("/movies");
         })
         .catch(function(error){
         res.send("Failed");
@@ -310,19 +253,6 @@ app.post("/input", (req,res) => {
   })
 
 
-// knex.insert({
-//       first_name: first_name,
-//       last_name: last_name,
-//       email: email,
-//       password: password
-//   })
-//   .into('users')
-//   .then(function(result){
-//     req.session = { email };
-//     res.send("OK");
-//   })
-//   .catch(function(error){
-//     res.send("Failed");
 
 
 app.get("/search", (req, res) => {
