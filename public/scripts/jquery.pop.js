@@ -1,15 +1,6 @@
 $(document).ready(function() {
-  // function popup() {
-  //   $("#contactdiv").css("display", "block");
-  // }
-  // $("#login #cancel").click(function() {
-  //   $(this).parent().parent().hide();
-  // });
   $("#onclick").click(function() {
     $("#contactdiv").css("display", "block");
-  });
-  $("#contact #cancel").click(function() {
-    $(this).parent().parent().hide();
   });
 
   $("#regBt").click(function(e) {
@@ -55,28 +46,3 @@ $(document).ready(function() {
     }
   })
 });
-
-
-
-
-
-
-
-
-
-
-
-
-  // function validateEmail(email) {
-  //   var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-  //   if (filter.test(email)) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-  //
-  // if (validateEmail(email)) {
-  //   $("#contactdiv").css("display", "none");
-  // }
-  //});
