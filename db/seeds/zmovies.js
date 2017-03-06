@@ -12,6 +12,7 @@ exports.seed = function(knex, Promise) {
         knex('movies').insert({id: 5, youtubeid: 'aZcoTQuYUqQ', title: 'Gordon Ramsay Steak', description: 'test4', likes: 4, id_user: 3, tag_id: 4}),
         knex('movies').insert({id: 6, youtubeid: 'SQuyOwNtAVM', title: 'Gordon Ramsay Salmon', description: 'Gordon Ramsay cooks salmon', likes: 13, id_user: 3, tag_id: 4}),
         knex('movies').insert({id: 7, youtubeid: 'EZfXa8vO8N8', title: 'Jamie Oliver', description: 'Jamie Oliver cooks', likes: 13, id_user: 1, tag_id: 4}),
+        knex('movies').insert({id: 8, youtubeid: 'YxiqHlINZGI', title: 'Learn The Fundamentals of CARPENTRY from ANTHONY GILARDI', description: 'Carpentry for Beginners!', likes: 1, id_user: 4, tag_id: 7}),
       ]);
     });
 };

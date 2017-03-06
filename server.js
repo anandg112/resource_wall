@@ -158,19 +158,19 @@ app.post("/logout", (req, res) =>{
 //   res.render("show_tile", urlObject);
 // });
 
-app.get("/movies/:id", (req, res) => {
-  knex
-    .select('*')
-    .from('movies')
-    .where('youtubeid', req.params.id)
-    .then((results) => {
-      var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
-      res.render('tile.ejs', templateVars);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
+// app.get("/movies/:id", (req, res) => {
+//   knex
+//     .select('*')
+//     .from('movies')
+//     .where('youtubeid', req.params.id)
+//     .then((results) => {
+//       var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
+//       res.render('tile.ejs', templateVars);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
 
 // app.get("/users/:id", (req, res) => {
 //   knex('movies')
@@ -189,11 +189,12 @@ app.get("/movies/:id", (req, res) => {
 
 app.post("/users/:likes", (req,res) =>{
 const {likes, id} = req.body;
+// console.log(req.body);
   knex("movies")
   .where( "id", "=", id)
   .increment("likes", 1)
   .then((implement) =>{
-    res.send("OK");
+    res.redirect("/movies");
   })
   .catch((error) => {
     console.log(error);
@@ -221,7 +222,7 @@ app.get("/movies/users/:id", (req, res) => {
     .orderBy('likes', 'desc')
     .where('users.id', req.params.id)
     .then((results) => {
-      var templateVars = {user_id: req.params.id, userMovies: results, firstName: results[0].first_name };
+      var templateVars = {user_id: req.params.id, userMovies: results, firstName: results[0].first_name, userID: req.params.id };
       res.render("liked-vid-user.ejs", templateVars);
     })
     .catch((error) => {
@@ -253,12 +254,7 @@ app.post("/input", (req,res) => {
         const title = req.body.title;
         const description = req.body.description;
         const tag_id = req.body.tags;
-        console.log(id_user[0].id);
-        console.log(youtubeid);
-        console.log(title);
-        console.log(description);
-        console.log(tag_id);
-        console.log(req.session.email);
+
           knex('movies')
            .insert({
 
@@ -296,15 +292,10 @@ app.post("/input", (req,res) => {
 
 
 app.get("/search", (req, res) => {
-res.render("partials/search")
+res.render("partials/_search")
 // console.log(req.body.search)
 })
 
-// app.post("/search", (req, res) => {
-//   const tag = req.body.tag
-//   console.log(tag)
-// res.redirect("/tags/req.body.search")
-// })
 
 
 app.get("/tags/:tags", (req, res) => {
@@ -326,7 +317,6 @@ app.get("/tags/:tags", (req, res) => {
     console.log(error);
     });
 });
-
 
 
 

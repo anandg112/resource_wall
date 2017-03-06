@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Search Results by tags</title>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
             <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
@@ -11,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/styles/input.css" type="text/css" />
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/lucy.js"></script>
     <script type="text/javascript" src="/scripts/add-link-pop.js"></script>
@@ -19,7 +20,32 @@
   </head>
 
 <body>
+<nav id="nav-bar">
+<div class = "container-fluid nb" >
 
+  <div class="navbar-header">
+    <img id="logo" src="/images/logo.png">
+
+  </div>
+  <div>
+
+  </div>
+    <h1 id=#txt>Maestro</h1>
+
+        <br>
+
+        <section class="searchnavelements">
+          <form method="GET" action="/movies" class="navbtn" >
+          <button type=submit>Home</button>
+          </form>
+
+
+          <form method="POST" action="/logout" class="navbtn">
+           <button type=submit>Logout</button>
+          </form>
+        </section>
+
+</div>
 
 
         <div class="jumbotron">
@@ -44,20 +70,17 @@
                     </div>
                     <div class="card-footer">
 
-                      Likes: <%= tag.likes %>
-                      <i class="material-icons" type="submit">favorite</i>
+                      Likes: <div class="figure"> <%= tag.likes %> </span> </div>
+                      <i class="material-icons" tagId="<%= tag.id %>" data-likes="<%= tag.likes %>" id="like" type="submit">favorite</i>
                     </div>
                </div>
           </div> <br>
             <% } %>
-
-
-
-        </div>
+      </div>
         <br>
  <button type="button" class="btn btn-primary" id="linkBtn">Submit New Link</button>
  <div id="like-count">
-   <%= mostLikedOfUser.likes %>
+
    <i class="material-icons" id="like" type="submit">favorite</i>
    <i class="material-icons" id="like-change">favorite</i>
  </div>
