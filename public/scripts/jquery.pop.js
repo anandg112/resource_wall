@@ -12,7 +12,7 @@ $(document).ready(function() {
     $(this).parent().parent().hide();
   });
 
-  $(".btn.btn-primary").click(function(e) {
+  $("#regBt").click(function(e) {
     e.preventDefault();
     var name = $("#first_name").val();
     var lastname = $("#last_name").val();
