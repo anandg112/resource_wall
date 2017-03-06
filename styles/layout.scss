@@ -288,11 +288,35 @@ color: #00CED1;
   color: black;
 }
 
+
 .form-control{
   width: 130px;
 }
+
 
 // .col-xs-12-col-sm-9{
 //   margin-top: 120px;
 //
 // }
+
+.col-xs-12-col-sm-9{
+  margin-top: 260px;
+}
+
+.navbtn {
+  display: inline;
+}
+
+.navelements {
+    float: right;
+    position: relative;
+    left: 250px;
+    bottom: 35px;
+
+}
+
+.searchnavelements {
+    float: right;
+    position: relative;
+    bottom: 35px;
+}

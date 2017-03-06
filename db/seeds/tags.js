@@ -11,6 +11,9 @@ exports.seed = function(knex, Promise) {
         knex('tags').insert({id: 4, name: 'cooking'}),
         knex('tags').insert({id: 5, name: 'cars'}),
         knex('tags').insert({id: 6, name: 'painting'}),
+        knex('tags').insert({id: 7, name: 'carpentry'}),
+        knex('tags').insert({id: 8, name: 'biking'}),
+        knex('tags').insert({id: 9, name: 'bodybuilding'}),
 
       ]);
     });

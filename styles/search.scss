@@ -1,16 +1,30 @@
 .btn {
-  width: 30px;
-  font-size: 10px;
-  background-color: grey;
-  margin-left: 100px;
-  border: ridge;
-  border-color: #4f616d;
-  padding: 0.5px;
+    width: 40px;
+    font-size: 10px;
+    background-color: grey;
+    border: ridge;
+    border-color: #4f616d;
+    padding: 0.5px;
+    position: relative;
+    float: right;
+    left: 300px;
+    bottom: 13px;
 
 }
 
 .btn:hover {
   background-color: lightgrey;
   cursor: pointer;
+
+}
+
+.searchfield {
+  padding: 5px;
+  resize: none;
+  position: relative;
+  bottom: 50px;
+  width: 300px;
+  height: 30px;
+  float: right;
 
 }

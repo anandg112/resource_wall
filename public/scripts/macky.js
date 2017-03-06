@@ -13,9 +13,8 @@ $(document).ready(function(){
 }
 
 
-  $(".inputbtn").click(function(ev){
 
-  })
+
 })
 
 
