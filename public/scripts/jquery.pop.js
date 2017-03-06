@@ -3,29 +3,29 @@ $(document).ready(function() {
     $("#contactdiv").css("display", "block");
   });
 
-  $("#regBt").click(function(e) {
-    e.preventDefault();
-    var name = $("#first_name").val();
-    var lastname = $("#last_name").val();
-    var email = $("#email").val();
-    var password = $("#password").val();
+  // $("#regBt").click(function(e) {
+  //   e.preventDefault();
+  //   var name = $("#first_name").val();
+  //   var lastname = $("#last_name").val();
+  //   var email = $("#email").val();
+  //   var password = $("#password").val();
 
-    if (!name || !lastname || !email || !password){
-      return alert("Please fill up the whole form");
-    }else{
-      $("#regbox").css("display", "none");
-    }
+  //   if (!name || !lastname || !email || !password){
+  //     return alert("Please fill up the whole form");
+  //   }else{
+  //     $("#regbox").css("display", "none");
+  //   }
 
-    $.ajax({
-      method: "POST",
-      url:"/register"
-    }).done((data) => {
-      if (data === "OK") {
-        $(".form-horizontal").hide();
-      }
-    })
+  //   $.ajax({
+  //     method: "POST",
+  //     url:"/register"
+  //   }).done((data) => {
+  //     if (data === "OK") {
+  //       $(".form-horizontal").hide();
+  //     }
+  //   })
 
-  });
+  // });
 
 
   $("#loginbtn").submit(function(e) {
