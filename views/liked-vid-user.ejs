@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Most Liked Videos of a User</title>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
             <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
@@ -11,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/styles/input.css" type="text/css" />
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
     <script type="text/javascript" src="/scripts/app.js"></script>
    <script type="text/javascript" src="/scripts/lucy.js"></script>
    <script type="text/javascript" src="/scripts/add-link-pop.js"></script>
@@ -19,6 +20,7 @@
   </head>
 
 <body>
+  <% include ./partials/_navbar %>
 
   <div class="jumbotron">
     <h4 class=display-8> Saved videos of <%= firstName %> </h2>
