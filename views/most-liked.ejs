@@ -51,11 +51,10 @@
                     </div>
                     <div class="card-footer">
 
-                      Likes:<%= mostLiked.likes %>
-                      <i class="material-icons" id="like" type="submit">favorite</i>
-                      <i class="material-icons" id="like-change">favorite</i>
 
-                      Email: <a href="http://localhost:8080/movies/users/<%= mostLiked.id_user%>"><%= mostLiked.email%></a>
+
+
+                      Email: <a href="<%= mostLiked.id_user%>"><%= mostLiked.email%></a>
                       Likes: <%= mostLiked.likes %>
                       <i class="material-icons" type="submit">favorite</i>
 

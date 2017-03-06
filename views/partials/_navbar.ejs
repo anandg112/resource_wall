@@ -1,3 +1,12 @@
+  <head>
+    <link rel="stylesheet" href="/styles/search.css" type="text/css" />
+      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script type="text/javascript" src="/scripts/macky.js"></script>
+      <meta charset="UTF-8">
+  </head>
+
+
+
 <nav id="nav-bar">
 <div class = "container-fluid">
 
@@ -9,16 +18,23 @@
 
   </div>
     <h1 id=#txt>Maestro</h1>
+      <section>
+        <form>
+          <textarea name="search" class="searchfield" placeholder="input a tag. Try 'magic' or 'cooking'"></textarea>
+        </form>
+        <div class="btn"> submit </div>
+      </section>
+        <br>
+        <div class="navelements">
 
-        <div id="myDropdown" class="dropdown-content">
-          <form method="GET" action="/movies/users" >
+          <form method="GET" action="/movies/users" class="navbtn" >
           <button type=submit>Home</button>
           </form>
-          <form method="GET" action="/movies/users/<%=userID%>">
+          <form method="GET" action="/movies/users/<%=userID%>" class="navbtn">
           <button type=submit>Profile</button>
           </form>
 
-          <form method="POST" action="/logout">
+          <form method="POST" action="/logout" class="navbtn">
            <button type=submit>Logout</button>
           </form>
       </div>
