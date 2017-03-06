@@ -12,11 +12,14 @@
     <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/input.css" type="text/css" />
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/lucy.js"></script>
+    <script type="text/javascript" src="/scripts/add-link-pop.js"></script>
+
 
   </head>
 
@@ -46,9 +49,15 @@
                       <%= mostLiked.description %>
                     </div>
                     <div class="card-footer">
+
+                      Likes:<%= mostLiked.likes %>
+                      <i class="material-icons" id="like" type="submit">favorite</i>
+                      <i class="material-icons" id="like-change">favorite</i>
+
                       Email: <a href="http://localhost:8080/movies/users/<%= mostLiked.id_user%>"><%= mostLiked.email%></a>
                       Likes: <%= mostLiked.likes %>
                       <i class="material-icons" type="submit">favorite</i>
+
                     </div>
                </div>
           </div> <br>
@@ -58,9 +67,30 @@
 
         </div>
         <br>
- <button type="button" class="btn btn-primary">Submit New Link</button>
+        <!--For Macky: I am adding a an ID and it will be easier for me to address the button in the jquery due the space in the prebuilt name of the class, as I'm afraid it will be creating contrast. *Lucy* -->
 
+           <button type="submit" class="btn btn-primary" id="linkBtn">Submit New Link</button>
 
+           <div id="inputbox">
+             <h5>INPUT NEW LINK HERE</h5>
+             <form method="POST" action="/input">
+               <div id="textarea">
+               <textarea id="video" name="video" class="inputfield" placeholder="insert link here"></textarea> <br>
+               <textarea id="title" name="title" class="inputfield" placeholder="insert title here"></textarea> <br>
+               <textarea id="descp" name="description" class="inputfield" placeholder="insert description"></textarea> <br>
+               <p>Genre:</p><select name="tags">
+                 <option value="1">Music</option>
+                 <option value="2">Magic</option>
+                 <option value="3">Javascript</option>
+                 <option value="4">Cooking</option>
+                 <option value="5">Cars</option>
+                 <option value="6">Painting</option>
+               </select>
+                 <input id="subBut" type="submit" name="submit"/>
+             </form>
+
+           </div>
+        </div>
 </body>
 </html>
 

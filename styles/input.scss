@@ -1,14 +1,26 @@
-.inputbox {
+#inputbox {
+  display:none;
   border: solid black;
-  width: 200px;
-  margin: auto;
-  padding: 10px;
+  width: 480px;
+  height:480px;
+  margin: 10px;
+  padding: 25px;
   border-radius: 10px;
   background-color: lightgrey;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  left: 50%;
+  top: 50%;
+  margin-left:-210px;
+  margin-top:-158px;
 }
 
 .inputfield {
-  margin-left: 10px;
+  margin: 10px;
+  padding:2em;
 }
 
 p {
@@ -22,7 +34,7 @@ p {
   width: 30px;
   font-size: 10px;
   background-color: grey;
-
+  padding:2em;
   border: ridge;
   border-color: #4f616d;
   padding: 0.5px;
@@ -39,5 +51,5 @@ p {
 }
 
 select {
-  margin-left:10px;
+  margin:10px;
 }
