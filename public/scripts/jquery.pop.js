@@ -42,7 +42,7 @@ $(document).ready(function() {
   $("#loginbtn").submit(function(e) {
   var email = $("#email-login").val();
   var password = $("#password-login").val();
-    if (!email || !password){
+    if (!email.length || !password.length) {
      alert("Please enter both email and password");
      }else{
 

@@ -7,6 +7,8 @@ body {
     border-width: 0px;
 }
 
+
+
 #nav-bar {
     opacity:0.86;
     color:#4A4A4A;
@@ -35,7 +37,6 @@ body {
 
 
 }
-
 
 
 main.container {
@@ -70,47 +71,98 @@ div.header {
   display:block;
 }
 
+
+#kldg{
+  text-align: center;
+  font-family: 'Fauna One', serif;
+  font-size: 100px;
+  color:#4a4a4a;
+}
+
 h2{
   margin-left: 65px;
   text-shadow:1px 0px 3px gray;
 }
 
 h3{
-  font-size:18px;
-  text-align:center;
-  text-shadow:1px 0px 3px gray;
+  font-family: 'Fauna One', serif;
+  font-size: 20px;
+  float:left;
+  color:#4a4a4a;
+
+}
+.form-group{
+  font-family: 'Fauna One', serif;
+  font-size:1px;
+  color:#4a4a4a;
+}
+
+.btn-primary {
+  padding:3px;
+  cursor:pointer;
+  margin-top:120px;
+  padding:5px 5px 5px 15px;
+  width:70px;
+  box-shadow:1px 1px 5px grey;
+  border-radius:3px;
+  color:#4a4a4a;
+  background-color:#eee;
+}
+
+button{
+  align:center;
 }
 
 #onclick{
+  font-family: 'Fauna One', serif;
   padding:3px;
-  color:green;
   cursor:pointer;
   padding:5px 5px 5px 15px;
   width:70px;
-  color:white;
-  background-color:#123456;
+  height:40px;
   box-shadow:1px 1px 5px grey;
-  border-radius:3px;
+  border-radius:15px;
+  color:#4a4a4a;
+  background-color:#eee;
+  font-size: 15px;
+  align-text:center;
+  float: left;
+
 }
 
+#regBt{
+  padding:3px;
+  cursor:pointer;
+  padding:5px 5px 5px 15px;
+  width:70px;
+  height:40px;
+  box-shadow:1px 1px 5px grey;
+  border-radius:15px;
+  color:#4a4a4a;
+  background-color:#eee;
+  float:left;
+  font-size: 15px;
+
+}
 b{
   font-size:18px;
   text-shadow:1px 0px 3px gray;
 }
 
 #popup{
-  padding-top:80px;
+
+  float:right;
+
+
 }
 
 .form{
-  border-radius:2px;
-  padding:20px 30px;
-  box-shadow:0 0 15px;
-  font-size:14px;
+
   font-weight:bold;
   width:350px;
-  margin:20px 250px 0 35px;
-  float:left;
+  float:right;
+  position:relative;
+  padding-bottom: 130px;
 }
 
 input{
@@ -190,6 +242,11 @@ textarea{
   top: 50%;
   margin-left:-210px;
   margin-top:-158px;
+  margin-bottom:120px;
+  float:right;
+  color:#4a4a4a;
+  background-color:#eee;
+
 }
 
 .container{
@@ -239,6 +296,16 @@ color: #00CED1;
   padding-right: 0.5em;
   float: right;
   color: black;
+}
+
+.form-control{
+  width: 130px;
+}
+
+.col-xs-12-col-sm-9{
+  margin-top: 260px;
+
+
 }
 
 
