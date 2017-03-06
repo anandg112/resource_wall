@@ -239,6 +239,35 @@ app.get("/movies/users/:id", (req, res) => {
 // res.render(/test.ejs)
 // }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/input", (req,res) => {
 res.render("input")
 })
@@ -254,7 +283,12 @@ app.post("/input", (req,res) => {
         const title = req.body.title;
         const description = req.body.description;
         const tag_id = req.body.tags;
-
+        console.log(id_user[0].id);
+        console.log(youtubeid);
+        console.log(title);
+        console.log(description);
+        console.log(tag_id);
+        console.log(req.session.email);
           knex('movies')
            .insert({
 
@@ -267,10 +301,10 @@ app.post("/input", (req,res) => {
           })
 
           .then(function(result){
-          res.redirect("/movies");
+          res.redirect("/");
         })
         .catch(function(error){
-        console.log(error);
+        res.send("Failed");
       })
     })
   })
