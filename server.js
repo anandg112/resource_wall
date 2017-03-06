@@ -129,9 +129,10 @@ app.get("/login", (req, res) =>{
   res.render("index");
 });
 
+
+
 app.post('/login', function(req, res) {
   const {email, password} = req.body;
-  console.log(req.body)
    knex.select("email", "password")
    .from('users')
    .where('email', '=', email)
