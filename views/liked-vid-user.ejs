@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <title>Most Liked Videos of a User</title>
+            <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -15,39 +17,46 @@
   </head>
 
 <body>
-
-  <div class="header">
-    <h2> Saved videos of <%= firstName %> </h2>
+  <div class="jumbotron">
+    <h4 class=display-8> Saved videos of <%= firstName %> </h2>
   </div>
 
-  <% for (mostLikedOfUser of userMovies){ %>
+  <div class="card-deck">
+    <% for (mostLikedOfUser of userMovies){ %>
+      <div class ="card" style="max-width: 500px">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= mostLikedOfUser.youtubeid%>"></iframe>
+        </div>
+        <div class="card-block">
+          <div class="card-title">
+            <h6><%=mostLikedOfUser.title%></h6>
+          </div>
+          <div>
+            <%= mostLikedOfUser.description %>
+          </div>
+          <div class="card-footer">
+            Likes: <%= mostLikedOfUser.likes %>
+            <i class="material-icons" type="submit">favorite</i>
+          </div>
 
-    <main class="container">
-      <div id = "titleName">
-        <%=  mostLikedOfUser.title%>
-      </div>
 
-      <div id = "preview">
-        <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= mostLikedOfUser.youtubeid%>" frameborder="0" allowfullscreen></iframe>
-      </div>
 
-      <div id = "descrip">
-        <%= mostLikedOfUser.description %>
-      </div>
+        </div>
+      </div> <br>
+      <% } %>
+  </div>
+    <button type="button" class="btn btn-primary">Submit New Link</button>
 
-      <div>
+
+
         <%= mostLikedOfUser.likes %>
         <i class="material-icons" id="like" type="submit">favorite</i>
         <i class="material-icons" id="like-change">favorite</i>
       </div>
 
-  </main>
 
-  <% } %>
 
-  <footer class="container">
-    <a href ='#'> Insert a new video </a>
-  </footer>
 
-</body>
+
+  </body>
 </html>
