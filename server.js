@@ -296,11 +296,6 @@ res.render("partials/_search")
 // console.log(req.body.search)
 })
 
-// app.post("/search", (req, res) => {
-//   const tag = req.body.tag
-//   console.log(tag)
-// res.redirect("/tags/req.body.search")
-// })
 
 
 app.get("/tags/:tags", (req, res) => {
@@ -315,22 +310,13 @@ app.get("/tags/:tags", (req, res) => {
     // // .join('tags', 'tag_id', 'id')
     // .where('tags.name', 'req.params.tags')
     .then((results) => {
-      knex
-        .select('id')
-        .from('users')
-        .where('email', req.session.email)
-        .then((results2) => {
-          console.log(results2)
-
-          var templateVars = {tags: req.params.tags, youtubeTags: results, userID: results2[0].id};
-          console.log(templateVars)
-          res.render("search-tags.ejs", templateVars);
+      var templateVars = {tags: req.params.tags, youtubeTags: results};
+        res.render("search-tags.ejs", templateVars);
     })
     .catch((error) => {
     console.log(error);
     });
-  });
-})
+});
 
 
 
