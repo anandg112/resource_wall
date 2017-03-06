@@ -51,38 +51,31 @@
       <% } %>
   </div>
   <br>
-    <button type="button" class="btn btn-primary" id="linkBtn">Submit New Link</button>
+
+<button type="submit"  id="linkBtn">Submit New Link</button>
+
+<!--  <button type="button" class="btn btn-primary" id="linkBtn">Submit New Link</button> -->
 
 
-
-        <%= mostLikedOfUser.likes %>
-
-      </div>
-
-
-      <div id="like-count">
-        <%= mostLikedOfUser.likes %>
-        <i class="material-icons" id="like" type="submit">favorite</i>
-        <i class="material-icons" id="like-change">favorite</i>
-      </div>
-
-      <div id="inputbox">
-        <h5>INPUT NEW LINK HERE</h5>
-        <form method="POST" action="/input">
-          <div id="textarea">
-          <textarea id="video" name="video" class="inputfield" placeholder="insert link here"></textarea> <br>
-          <textarea id="title" name="title" class="inputfield" placeholder="insert title here"></textarea> <br>
-          <textarea id="descp" name="description" class="inputfield" placeholder="insert description"></textarea> <br>
-          <p>Genre:</p><select name="tags">
-            <option value="1">Music</option>
-            <option value="2">Magic</option>
-            <option value="3">Javascript</option>
-            <option value="4">Cooking</option>
-            <option value="5">Cars</option>
-            <option value="6">Painting</option>
-          </select>
-            <input id="subBut" type="submit" name="submit"/>
-        </form>
+ <div id="inputbox">
+   <h5>INPUT NEW LINK HERE</h5>
+   <form method="POST" action="/input">
+     <div id="textarea">
+     <textarea id="video" name="video" class="inputfield" placeholder="insert link here"></textarea> <br>
+     <textarea id="title" name="title" class="inputfield" placeholder="insert title here"></textarea> <br>
+     <textarea id="descp" name="description" class="inputfield" placeholder="insert description"></textarea> <br>
+     <p>Genre:</p><select name="tags">
+       <option value="1">Music</option>
+       <option value="2">Magic</option>
+       <option value="3">Javascript</option>
+       <option value="4">Cooking</option>
+       <option value="5">Cars</option>
+       <option value="6">Painting</option>
+     </select>
+       <input id="subBut" type="submit" name="submit"/>
+   </form>
+  </div>
+</div>
 
   </body>
 </html>
