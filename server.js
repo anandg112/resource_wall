@@ -202,10 +202,11 @@ const {likes, id} = req.body;
 
 app.get("/movies", (req, res) => {
   knex('movies')
+    .innerJoin('users', 'movies.id_user', '=', 'users.id')
     .orderBy('likes', 'desc')
     .limit(3)
     .then((results) => {
-      var templateVars = {userMovies: results};
+      var templateVars = {userMovies: results, email: results[0].email, userID: results[0].id_user };
       res.render('most-liked.ejs', templateVars);
     })
     .catch((error) => {
@@ -213,7 +214,7 @@ app.get("/movies", (req, res) => {
     });
 });
 
-app.get("/users/:id", (req, res) => {
+app.get("/movies/users/:id", (req, res) => {
   knex('movies')
     .innerJoin('users','movies.id_user', '=', 'users.id')
     .orderBy('likes', 'desc')
