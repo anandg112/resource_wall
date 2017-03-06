@@ -43,16 +43,13 @@
                     </div>
                     <div class="card-footer">
 
-                      Likes: <%= tag.likes %>
-                      <i class="material-icons" type="submit">favorite</i>
+                      Likes: <div class="figure"> <%= tag.likes %> </span> </div>
+                      <i class="material-icons" tagId="<%= tag.id %>" data-likes="<%= tag.likes %>" id="like" type="submit">favorite</i>
                     </div>
                </div>
           </div> <br>
             <% } %>
-
-
-
-        </div>
+      </div>
         <br>
  <button type="button" class="btn btn-primary">Submit New Link</button>
 
@@ -97,4 +94,3 @@
   <footer class="container">
     <a href ='#'> Insert a new video </a>
   </footer> -->
-

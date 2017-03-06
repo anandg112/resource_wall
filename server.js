@@ -155,19 +155,19 @@ app.post("/logout", (req, res) =>{
 //   res.render("show_tile", urlObject);
 // });
 
-app.get("/movies/:id", (req, res) => {
-  knex
-    .select('*')
-    .from('movies')
-    .where('youtubeid', req.params.id)
-    .then((results) => {
-      var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
-      res.render('tile.ejs', templateVars);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
+// app.get("/movies/:id", (req, res) => {
+//   knex
+//     .select('*')
+//     .from('movies')
+//     .where('youtubeid', req.params.id)
+//     .then((results) => {
+//       var templateVars = {id: req.params.id, title: results[0].title, description: results[0].description};
+//       res.render('tile.ejs', templateVars);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
 
 // app.get("/users/:id", (req, res) => {
 //   knex('movies')
@@ -186,11 +186,12 @@ app.get("/movies/:id", (req, res) => {
 
 app.post("/users/:likes", (req,res) =>{
 const {likes, id} = req.body;
+// console.log(req.body);
   knex("movies")
   .where( "id", "=", id)
   .increment("likes", 1)
   .then((implement) =>{
-    res.send("OK");
+    res.redirect("/movies");
   })
   .catch((error) => {
     console.log(error);
