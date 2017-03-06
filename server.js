@@ -109,7 +109,7 @@ app.post('/register', function(req, res) {
   const last_name  = req.body.last_name;
   const email      = req.body.email;
   const password   = req.body.password;
-  console.log(req.body.first_name, "lucia")
+
   knex.insert({
       first_name: first_name,
       last_name: last_name,
@@ -120,6 +120,7 @@ app.post('/register', function(req, res) {
   .then(function(result){
     req.session = { email };
     res.redirect("/movies");
+    console.log(req.session)
   })
   .catch(function(error){
     res.send("Failed");
