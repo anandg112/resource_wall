@@ -1,5 +1,6 @@
 body {
-  background-image: url("./wall.jpeg");
+  background-image: url("/images/wall.jpeg");
+  background-position: 100%;
 }
 
 .navbar-fixed-top {
@@ -7,14 +8,19 @@ body {
 }
 
 #nav-bar {
-
-    color: #e8fdff;
+    opacity:0.86;
+    color:#4A4A4A;
     height: 80px;
     width:100%;
-    background-color:#68228B;
+    background-color:#eee;
     padding-left: 2em;
     padding-right: 2em;
+}
 
+#logo{
+  height:80px;
+  width:80px;
+  float:left;
 }
 
 #nav-bar .logout{
@@ -29,6 +35,8 @@ body {
 
 
 }
+
+
 
 main.container {
   width: 500px;
@@ -233,6 +241,7 @@ color: #00CED1;
   color: black;
 }
 
+
 // #like-change{
 // padding-right: 0.5em;
 // display: none;
@@ -245,4 +254,3 @@ color: #00CED1;
 //   float: right;
 //   color: black;
 // }
-
