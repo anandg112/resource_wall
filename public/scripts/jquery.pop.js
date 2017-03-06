@@ -31,8 +31,6 @@ $(document).ready(function() {
     }).done((data) => {
       if (data === "OK") {
         $(".form-horizontal").hide();
-      } else {
-        alert("Oops something went wrong");
       }
     })
 
