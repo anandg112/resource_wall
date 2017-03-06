@@ -291,7 +291,7 @@ app.post("/input", (req,res) => {
 
 
 app.get("/search", (req, res) => {
-res.render("partials/search")
+res.render("partials/_search")
 // console.log(req.body.search)
 })
 
