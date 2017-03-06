@@ -44,16 +44,13 @@
                     </div>
                     <div class="card-footer">
 
-                      Likes: <%= tag.likes %>
-                      <i class="material-icons" type="submit">favorite</i>
+                      Likes: <div class="figure"> <%= tag.likes %> </span> </div>
+                      <i class="material-icons" tagId="<%= tag.id %>" data-likes="<%= tag.likes %>" id="like" type="submit">favorite</i>
                     </div>
                </div>
           </div> <br>
             <% } %>
-
-
-
-        </div>
+      </div>
         <br>
  <button type="button" class="btn btn-primary" id="linkBtn">Submit New Link</button>
  <div id="like-count">
