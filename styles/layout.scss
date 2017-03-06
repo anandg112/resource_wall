@@ -25,18 +25,6 @@ body {
   float:left;
 }
 
-#nav-bar .logout{
-  margin-top: 5px;
-  float: right;
-  background-color:#BF3EFF;
-  border-color: #9932CC;
-  height: 70px;
-  width:90px;
-  border-radius:15%;
-  float:left;
-
-
-}
 
 
 main.container {
@@ -116,6 +104,7 @@ button{
 #onclick{
   font-family: 'Fauna One', serif;
   padding:3px;
+  margin-top: 20px;
   cursor:pointer;
   padding:5px 5px 5px 15px;
   width:70px;
@@ -126,7 +115,7 @@ button{
   background-color:#eee;
   font-size: 15px;
   align-text:center;
-  float: left;
+  float: right;
 
 }
 
@@ -156,7 +145,7 @@ b{
 
 }
 
-.form{
+.pop{
 
   font-weight:bold;
   width:70px;
@@ -195,26 +184,24 @@ textarea{
 }
 
 #contactdiv{
-  opacity:0.92;
   position: absolute;
   top: 0px;
   left: 0px;
   height: 100%;
   width: 100%;
-  background: #000;
   display: none;
 }
 
-#logindiv{
-  opacity:0.92;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  background: #000;
-  display: none;
-}
+// #logindiv{
+//   opacity:0.92;
+//   position: absolute;
+//   top: 0px;
+//   left: 0px;
+//   height: 100%;
+//   width: 100%;
+//   background: #000;
+//   display: none;
+// }
 
 #login,#contact{
   width:350px;
@@ -304,7 +291,7 @@ color: #00CED1;
   width: 130px;
 }
 
-.col-xs-12-col-sm-9{
-  margin-top: 120px;
-
-}
+// .col-xs-12-col-sm-9{
+//   margin-top: 120px;
+//
+// }

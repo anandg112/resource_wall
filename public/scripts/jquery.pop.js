@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  function popup() {
-    $("#logindiv").css("display", "block");
-  }
-  $("#login #cancel").click(function() {
-    $(this).parent().parent().hide();
-  });
+  // function popup() {
+  //   $("#contactdiv").css("display", "block");
+  // }
+  // $("#login #cancel").click(function() {
+  //   $(this).parent().parent().hide();
+  // });
   $("#onclick").click(function() {
     $("#contactdiv").css("display", "block");
   });
@@ -49,7 +49,7 @@ $(document).ready(function() {
         url: "/login"
       })
       .done(function() {
-        $("#logindiv").css("display", "none");
+        $("#contactdiv").css("display", "none");
       })
 
     }
