@@ -120,7 +120,6 @@ app.post('/register', function(req, res) {
   .into('users')
   .then(function(result){
     req.session = { email };
-    res.send("OK");
     res.redirect("/movies");
     console.log(req.session)
   })
