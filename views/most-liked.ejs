@@ -46,9 +46,9 @@
                       <%= mostLiked.description %>
                     </div>
                     <div class="card-footer">
-                      Likes:<%= mostLiked.likes %>
+                      Email: <a href="http://localhost:8080/movies/users/<%= mostLiked.id_user%>"><%= mostLiked.email%></a>
+                      Likes: <%= mostLiked.likes %>
                       <i class="material-icons" type="submit">favorite</i>
-                      <i class="icons-color">favorite</i>
                     </div>
                </div>
           </div> <br>
@@ -59,10 +59,6 @@
         </div>
         <br>
  <button type="button" class="btn btn-primary">Submit New Link</button>
-
-
-
-
 
 
 </body>
@@ -124,9 +120,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-
-
